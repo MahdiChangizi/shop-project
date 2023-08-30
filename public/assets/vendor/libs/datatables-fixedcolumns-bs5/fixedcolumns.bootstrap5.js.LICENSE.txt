@@ -1,0 +1,15 @@
+/*! Bootstrap 5 integration for DataTables' FixedColumns
+ * ©2016 SpryMedia Ltd - datatables.net/license
+ */
+
+/*! DataTables Bootstrap 5 integration
+ * 2020 SpryMedia Ltd - datatables.net/license
+ */
+
+/*! FixedColumns 4.1.0
+     * 2019-2022 SpryMedia Ltd - datatables.net/license
+     */
+
+/*! FixedColumns 4.1.0
+ * 2019-2022 SpryMedia Ltd - datatables.net/license
+ */

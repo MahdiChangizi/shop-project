@@ -1,0 +1,11 @@
+/*! Bootstrap 5 styling wrapper for FixedHeader
+ * ©2018 SpryMedia Ltd - datatables.net/license
+ */
+
+/*! DataTables Bootstrap 5 integration
+ * 2020 SpryMedia Ltd - datatables.net/license
+ */
+
+/*! FixedHeader 3.2.4
+ * ©2009-2022 SpryMedia Ltd - datatables.net/license
+ */

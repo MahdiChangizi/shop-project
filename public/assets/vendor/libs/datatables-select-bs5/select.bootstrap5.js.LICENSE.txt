@@ -1,0 +1,11 @@
+/*! Bootstrap 5 styling wrapper for Select
+ * ©2021 SpryMedia Ltd - datatables.net/license
+ */
+
+/*! DataTables Bootstrap 5 integration
+ * 2020 SpryMedia Ltd - datatables.net/license
+ */
+
+/*! Select for DataTables 1.4.0-dev
+ * 2015-2021 SpryMedia Ltd - datatables.net/license/mit
+ */

@@ -1,0 +1,3 @@
+/*! Select for DataTables 1.4.0-dev
+ * 2015-2021 SpryMedia Ltd - datatables.net/license/mit
+ */

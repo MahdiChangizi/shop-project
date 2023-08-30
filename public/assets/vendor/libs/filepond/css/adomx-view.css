@@ -1,0 +1,98 @@
+.filepond--root {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    height: auto !important;
+    margin: -5px;
+    contain: unset;
+}
+
+.filepond--root .filepond--drop-label {
+    max-width: 140px;
+    width: 100%;
+    height: 140px;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 100%;
+    -ms-flex: 1 0 100%;
+    flex: 1 0 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 5px;
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+    z-index: 99;
+}
+
+.filepond--root .filepond--drop-label::before {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    content: 'افزودن فایل';
+    /* font-family: "Material-Design-Iconic-Font"; */
+    font-size: 14px;
+}
+
+.filepond--root .filepond--drop-label label {
+    display: none;
+}
+
+.filepond--root .filepond--list-scroller {
+    position: relative;
+    -webkit-transform: none !important;
+    -ms-transform: none !important;
+    transform: none !important;
+    margin: 5px;
+    height: auto;
+}
+
+.filepond--root .filepond--list-scroller .filepond--list {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    left: 0;
+    right: 0;
+    margin: -5px;
+}
+
+.filepond--root .filepond--list-scroller .filepond--list::before {
+    width: 140px;
+    height: 140px;
+    content: "";
+    margin: 5px;
+}
+
+.filepond--root .filepond--panel-root {
+    display: none;
+}
+
+.filepond--list .filepond--item {
+    position: relative;
+    max-width: 140px;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 100%;
+    -ms-flex: 1 0 100%;
+    flex: 1 0 100%;
+    -webkit-transform: none !important;
+    -ms-transform: none !important;
+    transform: none !important;
+    margin: 5px;
+}
+
+.filepond--list .filepond--item .filepond--file-wrapper .filepond--file {
+    border-radius: 4px;
+}
+
+.filepond--image-preview-wrapper {
+    border-radius: 4px;
+}

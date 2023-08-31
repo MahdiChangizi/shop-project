@@ -138,6 +138,8 @@
 
 
 
+
+
         {{-- users --}}
         <li class="menu-item">
 
@@ -164,20 +166,13 @@
         {{-- users --}}
 
 
-        {{-- permission --}}
+        {{-- permission and role --}}
         <li class="menu-item">
-
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-lock-open" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M5 11m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z"></path>
-                        <path d="M12 16m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
-                        <path d="M8 11v-5a4 4 0 0 1 8 0"></path>
-                     </svg>
-                </i>
-                <div data-i18n="Users">سطوح دسترسی</div>
+                     <i class="menu-icon tf-icons ti ti-settings"></i>
+                <div data-i18n="Users">مجوز و نقش ها</div>
             </a>
+
             <ul class="menu-sub">
                 <li class="menu-item">
                     <a href="{{ route('admin.permission.index') }}" class="menu-link">
@@ -187,9 +182,39 @@
             </ul>
 
 
-        </li>
-        {{-- permission --}}
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('admin.role.index') }}" class="menu-link">
+                        <div data-i18n="List">همه نقش ها</div>
+                    </a>
+                </li>
+            </ul>
 
+        </li>
+
+        {{-- permission and role --}}
+
+        {{-- <i class="menu-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-lock-open" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M5 11m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z"></path>
+                <path d="M12 16m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+                <path d="M8 11v-5a4 4 0 0 1 8 0"></path>
+             </svg>
+        </i> --}}
+
+
+
+        {{-- <i class="menu-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-book" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
+                <path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0"></path>
+                <path d="M3 6l0 13"></path>
+                <path d="M12 6l0 13"></path>
+                <path d="M21 6l0 13"></path>
+             </svg>
+        </i> --}}
 
     </ul>
 

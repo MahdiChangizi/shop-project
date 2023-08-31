@@ -34,6 +34,11 @@
                         <tr>
                             <th>{{ $role->id }}</th>
                             <td>{{ $role->name }}</td>
+                            <td>
+                                @foreach ($role->permissions as $permission)
+                                        <span>[ {{ $permission->name }} ]</span>
+                                @endforeach
+                            </td>
 
                             <td>
                                 <a href="{{ route('admin.role.edit', $role->id) }}"

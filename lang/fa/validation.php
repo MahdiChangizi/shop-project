@@ -193,6 +193,7 @@ return [
 		"userName" => "نام کاربری",
 		"comment" => "نظر",
 		"permissions" => "دسترسی",
+		"roles" => "نقش",
 		"g-recaptcha-response" => "من ربات نیستم"
     ],
 ];

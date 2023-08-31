@@ -53,6 +53,10 @@
 
 
                             <td>
+
+                                <a href="{{ route('admin.user.permission', $user->id) }}" class="btn btn-sm rounded-pill btn-success waves-effect waves-light">دسترسی ها</a>
+                                <a href="{{ route('admin.user.role', $user->id) }}" class="btn btn-sm rounded-pill btn-warning waves-effect waves-light">نقش ها</a>
+
                                 <form id="deleteButton" class="d-inline" action="{{ route('admin.user.delete', $user->id) }}"
                                     method="POST">
                                     @csrf

@@ -30,7 +30,6 @@ class RoleController extends Controller
 
     public function store(Request $request)
     {
-        // dd('hi');
         $inputs = $request->validate([
             'name' => ['required', 'min:5', 'max:20'],
             'permissions' => ['required', 'array']
@@ -46,7 +45,8 @@ class RoleController extends Controller
 
     public function edit(Role $role)
     {
-        return view('admin.role.edit', compact('role'));
+        $permissions = Permission::all();
+        return view('admin.role.edit', compact('role', 'permissions'));
     }
 
 
@@ -54,10 +54,12 @@ class RoleController extends Controller
     public function update(Role $role, Request $request)
     {
         $inputs = $request->validate([
-            'name' => ['required', 'min:5', 'max:20']
+            'name' => ['required', 'min:5', 'max:20'],
+            'permissions' => ['required', 'array']
         ]);
 
-        $role->update($inputs);
+        $result = $role->update($inputs);
+        $role->permissions()->sync($inputs['permissions']);
 
         return to_route('admin.role.index')->with('alert-success', 'نقش شما با موفقیت ویرایش شد!');
     }

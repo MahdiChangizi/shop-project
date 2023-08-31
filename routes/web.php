@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Coustomer\HomeController;
@@ -114,6 +115,20 @@ Route::prefix('admin')->namespace('Admin')->group(function() {
         Route::get('/edit/{permission}', [PermissionController::class, 'edit'])->name('admin.permission.edit');
         Route::put('/update/{permission}', [PermissionController::class, 'update'])->name('admin.permission.update');
         Route::delete('/delete/{permission}', [PermissionController::class, 'delete'])->name('admin.permission.delete');
+    });
+
+
+
+
+
+    // roles
+    Route::prefix('role')->namespace('Role')->group(function() {
+        Route::get('/', [RoleController::class, 'index'])->name('admin.role.index');
+        Route::get('/create', [RoleController::class, 'create'])->name('admin.role.create');
+        Route::post('/store', [RoleController::class, 'store'])->name('admin.role.store');
+        Route::get('/edit/{permission}', [RoleController::class, 'edit'])->name('admin.role.edit');
+        Route::put('/update/{permission}', [RoleController::class, 'update'])->name('admin.role.update');
+        Route::delete('/delete/{permission}', [RoleController::class, 'delete'])->name('admin.role.delete');
     });
 
 

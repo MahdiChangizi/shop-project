@@ -192,6 +192,7 @@ return [
 		"logo" => "لوگو",
 		"userName" => "نام کاربری",
 		"comment" => "نظر",
+		"permissions" => "دسترسی",
 		"g-recaptcha-response" => "من ربات نیستم"
     ],
 ];

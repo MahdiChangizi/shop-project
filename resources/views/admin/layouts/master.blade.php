@@ -5,6 +5,7 @@
 
 <head>
     @include('admin.layouts.head-tag')
+    @yield('headTag')
 </head>
 
 <body>

@@ -3,11 +3,13 @@
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Coustomer\HomeController;
 use App\Models\Admin\Brand;
+use App\Models\Admin\Permission;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -96,12 +98,26 @@ Route::prefix('admin')->namespace('Admin')->group(function() {
     Route::prefix('user')->namespace('User')->group(function() {
         Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
         Route::get('/admin', [UserController::class, 'indexAdmin'])->name('admin.user.indexAdmin');
-        Route::get('/create', [UserController::class, 'create'])->name('admin.user.create');
-        Route::get('/edit/{user}', [UserController::class, 'edit'])->name('admin.user.edit');
         Route::delete('/delete/{user}', [UserController::class, 'delete'])->name('admin.user.delete');
-
-
     });
+
+
+
+
+
+
+    // permissions
+    Route::prefix('permission')->namespace('Permission')->group(function() {
+        Route::get('/', [PermissionController::class, 'index'])->name('admin.permission.index');
+        Route::get('/create', [PermissionController::class, 'create'])->name('admin.permission.create');
+        Route::post('/store', [PermissionController::class, 'store'])->name('admin.permission.store');
+        Route::get('/edit/{permission}', [PermissionController::class, 'edit'])->name('admin.permission.edit');
+        Route::put('/update/{permission}', [PermissionController::class, 'update'])->name('admin.permission.update');
+        Route::delete('/delete/{permission}', [PermissionController::class, 'delete'])->name('admin.permission.delete');
+    });
+
+
+
 });
 
 

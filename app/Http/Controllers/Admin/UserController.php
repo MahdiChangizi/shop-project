@@ -34,9 +34,14 @@ class UserController extends Controller
 
 
 
-    public function permissionCreate(User $user)
+    public function permissionCreate(User $user, Request $request)
     {
+        $inputs = $request->validate([
+            'permissions' => ['required', 'array', 'exists:permissions,id']
+        ]);
 
+        $user->permissions()->sync($inputs['permissions']);
+        return to_route('admin.user.index')->with('alert-success', 'دسترسی برای کاربر با موفقیت ایجاد شد😄!');
     }
 
 
@@ -48,9 +53,14 @@ class UserController extends Controller
     }
 
 
-    public function roleCreate(User $user)
+    public function roleCreate(User $user, Request $request)
     {
+        $inputs = $request->validate([
+            'roles' => ['required', 'array', 'exists:roles,id']
+        ]);
 
+        $user->roles()->sync($inputs['roles']);
+        return to_route('admin.user.index')->with('alert-success', 'نقش برای کاربر با موفقیت ایجاد شد😄!');
     }
 
 }

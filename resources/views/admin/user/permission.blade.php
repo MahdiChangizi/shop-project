@@ -8,7 +8,7 @@
 
 @section('content')
 
-<form action="{{ route('admin.role.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('admin.user.permission.create', $user->id) }}" method="POST">
     @csrf
 <div>
 
@@ -19,16 +19,16 @@
 
 
         <div class="mb-3 row">
-            <label for="role" class="col-md-2 col-form-label">دسترسی ها</label>
+            <label for="permissions" class="col-md-2 col-form-label">دسترسی ها</label>
             <div class="col-md-10">
-                <select id="role" name="role[]" class="select2 form-select" multiple>
+                <select id="permissions" name="permissions[]" class="select2 form-select" multiple>
                     @foreach ($permissions as $permission)
                     <option value="{{ $permission->id }}" {{ in_array($permission->id, $user->permissions->pluck('id')->toArray()) ? 'selected' : '' }} >{{ $permission->name }}</option>
                     @endforeach
                 </select>
 
 
-                @error('role')
+                @error('permissions')
                     <span class="text-danger mt-3">{{ $message }}</span>
                 @enderror
 
@@ -38,7 +38,7 @@
 
 
         <div class="m-auto float-end">
-            <a href="{{ route('admin.role.index') }}" class="btn btn-primary">بازگشت</a>
+            <a href="{{ route('admin.user.index') }}" class="btn btn-primary">بازگشت</a>
             <button type="submit" class="btn btn-success">اضافه کردن</button>
         </div>
 
@@ -56,7 +56,7 @@
 <script src="{{ asset('assets/vendor/libs/select2/select2.js') }}"></script>
 
 <script>
-    $('#role').select2({})
+    $('#permissions').select2({})
 </script>
 
 

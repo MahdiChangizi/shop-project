@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
@@ -137,6 +139,35 @@ Route::prefix('admin')->namespace('Admin')->group(function() {
         Route::delete('/delete/{role}', [RoleController::class, 'delete'])->name('admin.role.delete');
     });
 
+
+
+
+
+    // Provinces and cities
+    Route::prefix('province')->namespace('Province')->group(function() {
+        Route::get('/', [ProvinceController::class, 'index'])->name('admin.province.index');
+        Route::get('/create', [ProvinceController::class, 'create'])->name('admin.province.create');
+        Route::post('/store', [ProvinceController::class, 'store'])->name('admin.province.store');
+        Route::get('/edit/{province}', [ProvinceController::class, 'edit'])->name('admin.province.edit');
+        Route::put('/update/{province}', [ProvinceController::class, 'update'])->name('admin.province.update');
+        Route::delete('/delete/{province}', [ProvinceController::class, 'delete'])->name('admin.province.delete');
+
+        Route::get('/status/{province}', [ProvinceController::class, 'status'])->name('admin.province.status');
+    });
+
+
+    Route::prefix('city')->namespace('City')->group(function() {
+        Route::get('/', [CityController::class, 'index'])->name('admin.city.index');
+        Route::get('/create', [CityController::class, 'create'])->name('admin.city.create');
+        Route::post('/store', [CityController::class, 'store'])->name('admin.city.store');
+        Route::get('/edit/{city}', [CityController::class, 'edit'])->name('admin.city.edit');
+        Route::put('/update/{city}', [CityController::class, 'update'])->name('admin.city.update');
+        Route::delete('/delete/{city}', [CityController::class, 'delete'])->name('admin.city.delete');
+        Route::delete('/delete/{city}', [CityController::class, 'delete'])->name('admin.city.delete');
+
+        Route::get('/status/{city}', [CityController::class, 'status'])->name('admin.city.status');
+    });
+    // Provinces and cities
 
 
 });

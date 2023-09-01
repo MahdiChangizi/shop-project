@@ -101,7 +101,7 @@
                             <section class="position-relative sublist-area">
 
 
-                                <section class="sublist-item">
+                                {{-- <section class="sublist-item">
                                     @foreach ($categories as $category)
                                     <section class="sublist-item-toggle">{{ $category->name }}</section>
                                     <section class="sublist-item-sublist">
@@ -122,7 +122,7 @@
                                     </section>
                                 </section>
 
-                                @endforeach
+                                @endforeach --}}
 
 
                             </section>

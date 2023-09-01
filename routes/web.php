@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Coustomer\HomeController;
+use App\Http\Controllers\Coustomer\ProfileController;
 use App\Models\Admin\Brand;
 use App\Models\Admin\Permission;
 use Illuminate\Support\Facades\Route;
@@ -216,7 +217,9 @@ Route::prefix('auth')->namespace('Auth')->group(function() {
 */
 Route::prefix('')->namespace('Coustomer')->group(function() {
 
-    Route::get('/home', [HomeController::class, 'home'])->name('coustomer.home');
+    Route::get('', [HomeController::class, 'home'])->name('coustomer.home');
+
+    Route::get('profile', [ProfileController::class, 'index'])->name('coustomer.profile');
 
 
 

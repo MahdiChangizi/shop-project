@@ -85,5 +85,11 @@ class User extends Authenticatable
         return $this->permissions->where('name', $permission->name)->first() || $this->hasRole($permission->roles);
     }
 
-    
+
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
 }

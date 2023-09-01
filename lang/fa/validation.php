@@ -194,6 +194,7 @@ return [
 		"comment" => "نظر",
 		"permissions" => "دسترسی",
 		"roles" => "نقش",
+		"province" => "استان",
 		"g-recaptcha-response" => "من ربات نیستم"
     ],
 ];

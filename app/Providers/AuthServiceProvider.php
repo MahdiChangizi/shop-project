@@ -30,6 +30,6 @@ class AuthServiceProvider extends ServiceProvider
                 return $user->hasPermission($permission);
             });
 
-       }
+        }
     }
 }

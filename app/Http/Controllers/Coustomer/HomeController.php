@@ -15,7 +15,7 @@ class HomeController extends Controller
         $brands = Brand::all();
         $categories = Category::whereNull('parent_id')->get();
         $parents = Category::where('parent_id', '!=', null)->get();
-        return view('coustomer.layouts.master', compact('brands', 'categories', 'parents', ));
+        return view('coustomer.index', compact('brands', 'categories', 'parents', ));
     }
 
 }

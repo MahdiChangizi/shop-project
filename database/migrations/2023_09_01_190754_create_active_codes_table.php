@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('code');
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
             $table->unique(['code', 'user_id']);
-            $table->timestamps();
+            $table->timestamp('expired_at');
         });
     }
 

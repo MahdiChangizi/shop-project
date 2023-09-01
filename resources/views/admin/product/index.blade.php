@@ -81,8 +81,8 @@
         </div>
     </div>
 
-    <div class="text-center mt-5">
-        {{ $products->links() }}
+    <div class="d-flex justify-content-center mt-5">
+        {{ $products->links('pagination::bootstrap-5') }}
     </div>
 
 @endsection

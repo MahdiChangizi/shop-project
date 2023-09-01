@@ -10,7 +10,7 @@ class CommentController extends Controller
 {
     public function index()
     {
-        $comments = Comment::simplePaginate(10);
+        $comments = Comment::Paginate(10);
         return view('admin.comment.inedex', compact('comments'));
     }
 

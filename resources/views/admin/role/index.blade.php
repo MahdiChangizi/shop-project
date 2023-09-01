@@ -62,8 +62,8 @@
         </div>
     </div>
 
-    <div class="text-center mt-5">
-        {{ $roles->links() }}
+    <div class="d-flex justify-content-center mt-5">
+        {{ $roles->links('pagination::bootstrap-5') }}
     </div>
 
 @endsection

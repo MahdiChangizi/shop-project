@@ -79,8 +79,8 @@
         </div>
     </div>
 
-    <div class="text-center mt-5">
-        {{-- {{ $comments->links() }} --}}
+    <div class="d-flex justify-content-center mt-5">
+        {{ $comments->links('pagination::bootstrap-5') }}
     </div>
 
 @endsection

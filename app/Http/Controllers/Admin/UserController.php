@@ -12,13 +12,13 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::simplePaginate(10);
+        $users = User::Paginate(10);
         return view('admin.user.index', compact('users'));
     }
 
     public function indexAdmin()
     {
-        $users = User::where('user_type', 1)->simplePaginate(10);
+        $users = User::where('user_type', 1)->Paginate(10);
         return view('admin.user.indexAdmin', compact('users'));
     }
 

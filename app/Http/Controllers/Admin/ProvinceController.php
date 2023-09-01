@@ -10,7 +10,7 @@ class ProvinceController extends Controller
 {
     public function index()
     {
-        $provinces = Provinces_and_city::where('parent_id', null)->simplePaginate(10);
+        $provinces = Provinces_and_city::where('parent_id', null)->Paginate(10);
         return view('admin.province-and-city.province.index', compact('provinces'));
     }
 

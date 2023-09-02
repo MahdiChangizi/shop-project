@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
-@include('auth.hedtag')
+@include('auth.layout.hedtag')
 </head>
 <body>
 
     @yield('content')
 
 
-    @include('auth.script')
+    @include('auth.layout.script')
     {!! htmlScriptTagJsApi() !!}
     @include('sweetalert::alert')
 

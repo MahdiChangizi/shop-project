@@ -22,5 +22,7 @@
 
 
     @include('coustomer.layouts.script')
+    @include('sweetalert::alert')
+
 </body>
 </html>

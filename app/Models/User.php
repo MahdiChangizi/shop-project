@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Models\Admin\ActiveCode;
 use App\Models\Admin\Permission;
 use App\Models\Admin\Role;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -90,6 +91,11 @@ class User extends Authenticatable
     public function profile()
     {
         return $this->hasOne(Profile::class);
+    }
+
+    public function codes()
+    {
+        return $this->hasMany(ActiveCode::class);
     }
 
 }

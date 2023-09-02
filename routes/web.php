@@ -197,6 +197,11 @@ Route::prefix('auth')->namespace('Auth')->group(function() {
     Route::get('/loginForm', [AuthController::class, 'loginForm'])->name('auth.loginForm');
     Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 
+
+    // active code for user
+    Route::get('/activationForm', [AuthController::class, 'activationForm'])->name('auth.activationForm');
+    Route::post('/activation', [AuthController::class, 'activation'])->name('auth.activation');
+
 });
 
 

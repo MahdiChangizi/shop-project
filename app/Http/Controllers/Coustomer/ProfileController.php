@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Coustomer;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Coustomer\ProfileRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,33 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        return view('coustomer.home.profile');
+        return view('coustomer.home.profile.profile');
+    }
+
+
+    public function edit()
+    {
+        return view('coustomer.home.profile.editProfile');
+    }
+
+
+    public function update(User $user, ProfileRequest $request)
+    {
+        $inputs  = $request->all();
+        $profile['first_name'] = $inputs['first_name'];
+        $profile['last_name'] = $inputs['last_name'];
+
+
+        $user->update([
+            'userName' => $inputs['userName']
+        ]);
+        $user->profile()->update([
+            'first_name' => $inputs['first_name'],
+            'last_name'  => $inputs['last_name']
+        ]);
+
+        toast('پروفایل شما با موفقیت ویرایش شد!', 'success');
+        return to_route('coustomer.profile');
     }
 
 }

@@ -224,7 +224,11 @@ Route::prefix('')->namespace('Coustomer')->group(function() {
 
     Route::get('', [HomeController::class, 'home'])->name('coustomer.home');
 
+
     Route::get('profile', [ProfileController::class, 'index'])->name('coustomer.profile');
+
+    Route::get('editProfile', [ProfileController::class, 'edit'])->name('coustomer.editProfile');
+    Route::put('updateProfile/{user}', [ProfileController::class, 'update'])->name('coustomer.updateProfile');
 
 
 

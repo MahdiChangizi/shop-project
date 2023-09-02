@@ -8,6 +8,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\Admin\ActiveCode;
 use App\Models\User;
+use App\Notifications\CodeNotification;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +34,14 @@ class AuthController extends Controller
         }
 
         $code = ActiveCode::generateCode($user);
-        return to_route('auth.activationForm');
+        $request->user()->notify(new CodeNotification($code, $user['mobile']));
+
+        if($user['mobile_verified_at'] == null)
+        {
+            return to_route('auth.activationForm');
+        } else  {
+            return to_route('coustomer.profile');
+        }
     }
 
 
@@ -53,7 +61,14 @@ class AuthController extends Controller
         $user = User::where('mobile', $request->mobile)->first();
         if ($user && Auth::attempt(['mobile' => $request->mobile, 'password' => $request->password])) {
             $code = ActiveCode::generateCode($user);
-            return to_route('auth.activationForm');
+            $request->user()->notify(new CodeNotification($code, $user['mobile']));
+
+            if($user['mobile_verified_at'] == null)
+            {
+                return to_route('auth.activationForm');
+            } else  {
+                return to_route('coustomer.profile');
+            }
         }
         else
         {

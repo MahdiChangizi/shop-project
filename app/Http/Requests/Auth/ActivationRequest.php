@@ -24,7 +24,7 @@ class ActivationRequest extends FormRequest
     {
         return [
             'mobile' => ['required', Rule::unique('users', 'mobile')->ignore(auth()->id()), 'numeric', 'regex:/^09\d{9}$/'],
-            'code'   => ['required', 'integer', 'max:999999']
+            'code'   => ['required', 'integer', 'min:100000' ,'max:999999']
         ];
     }
 }

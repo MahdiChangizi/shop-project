@@ -32,8 +32,8 @@ class AuthController extends Controller
             Auth::loginUsingId($user->id);
         }
 
-        return to_route('home');
-        // return to_route('')->with('success');
+        $code = ActiveCode::generateCode($user);
+        return to_route('auth.activationForm');
     }
 
 
@@ -52,7 +52,8 @@ class AuthController extends Controller
     {
         $user = User::where('mobile', $request->mobile)->first();
         if ($user && Auth::attempt(['mobile' => $request->mobile, 'password' => $request->password])) {
-            return to_route('admin.category.index');
+            $code = ActiveCode::generateCode($user);
+            return to_route('auth.activationForm');
         }
         else
         {
@@ -97,6 +98,7 @@ class AuthController extends Controller
                         {
                             auth()->user()->mobile_verified_at = now();
                             auth()->user()->save();
+                            auth()->user()->codes()->delete();
 
                             toast('حساب شما با موفقیت فعال شد!' ,'success');
                             return to_route('coustomer.profile');

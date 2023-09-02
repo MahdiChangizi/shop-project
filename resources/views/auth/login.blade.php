@@ -1,4 +1,4 @@
-@extends('auth.master')
+@extends('auth.layout.master')
 @section('content')
 
 <style>

@@ -39,8 +39,6 @@
             </section>
 
 
-
-            
             <section class="col-6 mb-2 py-2">
                 <section class="field-title">نام</section>
                 <section class="field-value overflow-auto">
@@ -55,6 +53,7 @@
                     {{ auth()->user()->profile ? auth()->user()->profile->last_name : '...' }}
                 </section>
             </section>
+
 
         </section>
 

@@ -38,29 +38,20 @@
                 <section class="field-value overflow-auto">{{ auth()->user()->mobile }}</section>
             </section>
 
-            @if (auth()->user()->profile->first_name != null)
             <section class="col-6 mb-2 py-2">
                 <section class="field-title">نام</section>
-                <section class="field-value overflow-auto">{{ auth()->user()->profile->first_name }}</section>
+                <section class="field-value overflow-auto">
+                    {{ auth()->user()->profile ? auth()->user()->profile->first_name : '...' }}
+                </section>
             </section>
-            @else
-            <section class="col-6 mb-2 py-2">
-                <section class="field-title">نام</section>
-                <section class="field-value overflow-auto text-danger">...</section>
-            </section>
-            @endif
 
-            @if (auth()->user()->profile->last_name != null)
             <section class="col-6 mb-2 py-2">
                 <section class="field-title">نام خانوادگی</section>
-                <section class="field-value overflow-auto">{{ auth()->user()->profile->last_name }}</section>
+                <section class="field-value overflow-auto">
+                    {{ auth()->user()->profile ? auth()->user()->profile->last_name : '...' }}
+                </section>
             </section>
-            @else
-            <section class="col-6 mb-2 py-2">
-                <section class="field-title">نام خانوادگی</section>
-                <section class="field-value overflow-auto text-danger">...</section>
-            </section>
-            @endif
+
 
 
 

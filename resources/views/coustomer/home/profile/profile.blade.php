@@ -52,6 +52,7 @@
                     {{ auth()->user()->profile ? auth()->user()->profile->last_name : '...' }}
                 </section>
             </section>
+            
 
 
 

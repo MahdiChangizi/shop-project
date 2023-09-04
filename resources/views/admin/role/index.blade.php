@@ -48,7 +48,7 @@
                                     method="POST">
                                     @csrf
                                     @method('delete')
-                                    <button type="submit"
+                                    <button type="button"
                                         class="btn rounded-pill btn-sm btn-danger waves-effect waves-light deleteButton"
                                         id="deleteButton">حذف</button>
                                 </form>

@@ -230,10 +230,8 @@ Route::prefix('')->namespace('Coustomer')->group(function() {
     Route::get('editProfile', [ProfileController::class, 'edit'])->name('coustomer.editProfile');
     Route::put('updateProfile/{user}', [ProfileController::class, 'update'])->name('coustomer.updateProfile');
 
-
-
-
 });
+
 
 /*
 |--------------------------------------------------------------------------

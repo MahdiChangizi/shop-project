@@ -17,7 +17,7 @@
             .then(({ value }) => {
                 if (!value) return;
 
-                // کدهای مربوطه برای حذف
+                $(this).closest('form').submit();
             });
         });
     });

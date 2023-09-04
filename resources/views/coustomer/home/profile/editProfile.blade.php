@@ -41,21 +41,23 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="first_name">نام</label>
-                            <input type="text" name="first_name" class="form-control" id="first_name" placeholder="نام خود را وارد کنید ..." value="{{ old('first_name', auth()->user()->profile->first_name) }}">
+                            <input type="text" name="first_name" class="form-control" id="first_name" placeholder="نام خود را وارد کنید ..." value="{{ old('first_name', auth()->user()->profile ? auth()->user()->profile->first_name : '') }}">
                             @error('first_name')
                                 <span class="text-danger mt-2">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
+
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="last_name">نام خانوادگی</label>
-                            <input type="text" name="last_name" class="form-control" id="last_name" placeholder="نام خانوادگی خود را وارد کنید ..." value="{{ old('last_name', auth()->user()->profile->last_name) }}">
+                            <input type="text" name="last_name" class="form-control" id="last_name" placeholder="نام خانوادگی خود را وارد کنید ..." value="{{ old('last_name', auth()->user()->profile ? auth()->user()->profile->last_name : '') }}">
                             @error('last_name')
                                 <span class="text-danger mt-2">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
+
                 </div>
 
                 <div class="mt-4">

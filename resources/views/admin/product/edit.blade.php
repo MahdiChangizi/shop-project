@@ -134,18 +134,27 @@
         <div class="mb-3 row">
             <h4 class="col-md-2 col-form-label">ویژگی محصولات</h4>
             <div class="col-md-10">
-
                 <div>
                     <h4 class="btn btn-primary" id="add-feature">افزودن ویژگی</h4>
                     <div id="feature-container">
-                        <!-- اینجا ویژگی‌ها ویرایش می‌شوند -->
+                        @foreach($product->attributes as $attribute)
+                            <div class="row mb-2">
+                                <div class="col">
+                                    <input type="text" class="form-control" name="attributes[{{ $loop->index }}][name]" placeholder="ویژگی محصول" value="{{ $attribute->name }}">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" name="attributes[{{ $loop->index }}][value]" placeholder="مقدار ویژگی محصول" value="{{ $attribute->value }}">
+                                </div>
+                                <div class="col">
+                                    <button class="btn btn-danger remove-feature">حذف</button>
+                                </div>
+                            </div>
+                        @endforeach
+
                     </div>
                 </div>
-
-
-
-              </div>
             </div>
+        </div>
 
 
 
@@ -167,30 +176,31 @@
 @section('script')
 <script>
     $(document).ready(function () {
-        var featureCounter = 0; // یک شمارنده برای نام‌گذاری منحصر به فرد نیم‌ینپوت‌ها
+        var featureCounter = {{ $product->attributes->count() }};
 
         $("#add-feature").click(function () {
             var featureContainer = $("#feature-container");
             var featureRow = $("<div class='row mb-2'></div>");
 
-            // ایجاد نام‌های منحصر به فرد بر اساس شمارنده
             var featureNameInput = $("<div class='col'><input type='text' class='form-control' name='attributes[" + featureCounter + "][name]' placeholder='ویژگی محصول'></div>");
             var featureValueInput = $("<div class='col'><input type='text' class='form-control' name='attributes[" + featureCounter + "][value]' placeholder='مقدار ویژگی محصول'></div>");
-            var removeButton = $("<div class='col'><button class='btn btn-danger'>حذف</button></div>");
+            var removeButton = $("<div class='col'><button class='btn btn-danger remove-feature'>حذف</button></div>");
 
-            // ویرایش کردن ویژگی‌ها و دکمه حذف به ردیف جدید
             featureRow.append(featureNameInput);
             featureRow.append(featureValueInput);
             featureRow.append(removeButton);
 
             featureContainer.append(featureRow);
 
-            // حذف ردیف در صورت فشردن دکمه حذف
             removeButton.click(function () {
                 featureRow.remove();
             });
 
-            featureCounter++; // افزایش شمارنده برای نام‌گذاری منحصر به فرد نیم‌ینپوت‌ها
+            featureCounter++;
+        });
+
+        $("#feature-container").on("click", ".remove-feature", function () {
+            $(this).closest(".row").remove();
         });
     });
 </script>

@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory, Sluggable;
-    protected $fillable = ['name', 'description', 'status', 'image', 'slug', 'parent_id'];
+    protected $fillable = ['name', 'description', 'status', 'slug', 'parent_id'];
 
     public function sluggable(): array
     {

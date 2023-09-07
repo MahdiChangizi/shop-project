@@ -25,7 +25,6 @@ class CategoryRequest extends FormRequest
             return [
                 'name' => ['required', 'string', 'min:3', 'max:20'],
                 'description' => ['required', 'min:30', 'max:10000'],
-                'image' => ['required', 'mimes:png,jpg'],
                 'status' => ['required', 'numeric','in:0,1'],
                 'parent_id' => ['exists:categories,id', 'nullable'],
             ];
@@ -35,7 +34,6 @@ class CategoryRequest extends FormRequest
             return [
                 'name' => ['required', 'string', 'min:3', 'max:20'],
                 'description' => ['required', 'min:30', 'max:10000'],
-                'image' => ['mimes:png,jpg'],
                 'status' => ['required', 'numeric','in:0,1'],
                 'parent_id' => ['exists:categories,id', 'nullable'],
             ];

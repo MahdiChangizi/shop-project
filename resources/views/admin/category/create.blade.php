@@ -2,7 +2,7 @@
 
 @section('content')
 
-<form action="{{ route('admin.category.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('admin.category.store') }}" method="POST">
     @csrf
 <div>
 
@@ -36,15 +36,6 @@
         </div>
 
 
-        <div class="mb-3 row">
-          <label class="col-md-2 col-form-label">تصویر</label>
-          <div class="col-md-10">
-            <input class="form-control mb-2" name="image" type="file" id="formFile">
-            @error('image')
-                <span class="text-danger mt-3">{{ $message }}</span>
-            @enderror
-          </div>
-        </div>
 
 
         <div class="mb-3 row">

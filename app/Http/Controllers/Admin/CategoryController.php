@@ -34,12 +34,8 @@ class CategoryController extends Controller
 
 
     /* -- create a category -- */
-    public function store(CategoryRequest $request, ImageService $imageService) {
+    public function store(CategoryRequest $request) {
         $inputs = $request->all();
-
-        $image = $request->file('image');
-        $imageService->save($image, 'categories');
-        $inputs['image'] = $imageService->saveImageDb();
         Category::create($inputs);
         return to_route('admin.category.index')->with('alert-success', 'دسته بندی شما با موفقیت اضافه شد');
     }
@@ -59,20 +55,10 @@ class CategoryController extends Controller
 
 
     /* -- update a category -- */
-    public function update(Category $category, CategoryRequest $categoryRequest, ImageService $imageService) {
+    public function update(Category $category, CategoryRequest $categoryRequest) {
         $inputs = $categoryRequest->all();
         $inputs['parent_id'] = $categoryRequest->parent_id;
-        $image = $categoryRequest->file('image');
-
-        if($categoryRequest->hasFile('image'))
-        {
-            File::delete(public_path($category->image));
-            $imageService->save($image);
-            $inputs['image'] = $imageService->saveImageDb();
-        }
-
         $result = $category->update($inputs);
-
         return to_route('admin.category.index')->with('alert-success', 'دسته بندی شما با موفقیت ویرایش شد');
     }
 
@@ -82,7 +68,6 @@ class CategoryController extends Controller
 
     /* -- delete -- */
     public function delete(Category $category) {
-        File::delete(public_path($category->image));
         $category->delete();
         return back();
     }

@@ -49,34 +49,41 @@
                     <section class="lazyload-wrapper" >
                         <section class="lazyload light-owl-nav owl-carousel owl-theme">
 
-                            <section class="item">
-                                <section class="lazyload-item-wrapper">
-                                    <section class="product">
-                                        <section class="product-add-to-cart"><a href="#" data-bs-toggle="tooltip" data-bs-placement="left" title="افزودن به سبد خرید"><i class="fa fa-cart-plus"></i></a></section>
-                                        <section class="product-add-to-favorite"><a href="#" data-bs-toggle="tooltip" data-bs-placement="left" title="افزودن به علاقه مندی"><i class="fa fa-heart"></i></a></section>
-                                        <a class="product-link" href="#">
-                                            <section class="product-image">
-                                                <img class="" src="assets/images/products/21.jpg" alt="">
-                                            </section>
-                                            <section class="product-colors"></section>
-                                            <section class="product-name"><h3>گوشی موبایل شیائومی مدل POCO X3 Pro M2102J20SG دو ...</h3></section>
-                                            <section class="product-price-wrapper">
-                                                <section class="product-discount">
-                                                    <span class="product-old-price">6,895,000 </span>
-                                                    <span class="product-discount-amount">10%</span>
+                            @foreach ($products as $product)
+                                <section class="item">
+                                    <section class="lazyload-item-wrapper">
+                                        <section class="product">
+                                            <section class="product-add-to-cart"><a href="#" data-bs-toggle="tooltip" data-bs-placement="left" title="افزودن به سبد خرید"><i class="fa fa-cart-plus"></i></a></section>
+                                            <section class="product-add-to-favorite"><a href="#" data-bs-toggle="tooltip" data-bs-placement="left" title="افزودن به علاقه مندی"><i class="fa fa-heart"></i></a></section>
+                                            <a class="product-link" href="#">
+
+                                                <section class="product-image">
+                                                    <img class="" src="{{ asset($product->image) }}" alt="{{ $product->id }}">
                                                 </section>
-                                                <section class="product-price">6,264،000 تومان</section>
-                                            </section>
-                                            <section class="product-colors">
-                                                <section class="product-colors-item" style="background-color: white;"></section>
-                                                <section class="product-colors-item" style="background-color: blue;"></section>
-                                                <section class="product-colors-item" style="background-color: red;"></section>
-                                            </section>
-                                        </a>
+
+                                                <section class="product-colors"></section>
+                                                <section class="product-name">
+                                                    <h3>{{ $product->name }}</h3>
+                                                </section>
+                                                <section class="product-price-wrapper">
+                                                    <section class="product-discount">
+                                                        <span class="product-old-price">6,895,000 </span>
+                                                        <span class="product-discount-amount">10%</span>
+                                                    </section>
+
+                                                    <section class="product-price">{{ $product->price }} تومان</section>
+
+                                                </section>
+                                                <section class="product-colors">
+                                                    <section class="product-colors-item" style="background-color: white;"></section>
+                                                    <section class="product-colors-item" style="background-color: blue;"></section>
+                                                    <section class="product-colors-item" style="background-color: red;"></section>
+                                                </section>
+                                            </a>
+                                        </section>
                                     </section>
                                 </section>
-                            </section>
-
+                            @endforeach
 
                         </section>
                     </section>
@@ -94,8 +101,12 @@
     <section class="container-xxl">
         <!-- two column-->
         <section class="row py-4">
-            <section class="col-12 col-md-6 mt-2 mt-md-0"><img class="d-block rounded-2 w-100" src="assets/images/ads/two-col-1.jpg" alt=""></section>
-            <section class="col-12 col-md-6 mt-2 mt-md-0"><img class="d-block rounded-2 w-100" src="assets/images/ads/two-col-2.jpg" alt=""></section>
+            {{-- for test brand but in reality Promotional teaser --}}
+            @foreach ($brands as $brand)
+            <section class="col-12 col-md-6 mt-2 mt-md-0">
+                {{-- <img class="d-block rounded-2 w-100" src="{{ asset($brand->logo) }}" alt=""> --}}
+            </section>
+            @endforeach
         </section>
 
     </section>
@@ -124,23 +135,30 @@
                     <section class="lazyload-wrapper" >
                         <section class="lazyload light-owl-nav owl-carousel owl-theme">
 
+                            @foreach ($products as $product)
                             <section class="item">
                                 <section class="lazyload-item-wrapper">
                                     <section class="product">
                                         <section class="product-add-to-cart"><a href="#" data-bs-toggle="tooltip" data-bs-placement="left" title="افزودن به سبد خرید"><i class="fa fa-cart-plus"></i></a></section>
                                         <section class="product-add-to-favorite"><a href="#" data-bs-toggle="tooltip" data-bs-placement="left" title="افزودن به علاقه مندی"><i class="fa fa-heart"></i></a></section>
                                         <a class="product-link" href="#">
+
                                             <section class="product-image">
-                                                <img class="" src="assets/images/products/2.jpg" alt="">
+                                                <img class="" src="{{ asset($product->image) }}" alt="{{ $product->id }}">
                                             </section>
+
                                             <section class="product-colors"></section>
-                                            <section class="product-name"><h3>دستگاه آبمیوه گیری دنویر با کد 1016</h3></section>
+                                            <section class="product-name">
+                                                <h3>{{ $product->name }}</h3>
+                                            </section>
                                             <section class="product-price-wrapper">
                                                 <section class="product-discount">
-                                                    <span class="product-old-price">342,000 </span>
-                                                    <span class="product-discount-amount">22%</span>
+                                                    <span class="product-old-price">6,895,000 </span>
+                                                    <span class="product-discount-amount">10%</span>
                                                 </section>
-                                                <section class="product-price">264،000 تومان</section>
+
+                                                <section class="product-price">{{ $product->price }} تومان</section>
+
                                             </section>
                                             <section class="product-colors">
                                                 <section class="product-colors-item" style="background-color: white;"></section>
@@ -151,6 +169,7 @@
                                     </section>
                                 </section>
                             </section>
+                        @endforeach
 
                         </section>
                     </section>

@@ -137,6 +137,32 @@
 
 
 
+        {{-- banner --}}
+        <li class="menu-item">
+
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-flag-3" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M5 14h14l-4.5 -4.5l4.5 -4.5h-14v16"></path>
+                     </svg>
+                </i>
+                <div data-i18n="Users">بنر تبلیغاتی</div>
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item">
+                    <a href="{{ route('admin.banner.index') }}" class="menu-link">
+                        <div data-i18n="List">همه بنر ها</div>
+                    </a>
+                </li>
+            </ul>
+
+        </li>
+        {{-- banner --}}
+
+
+
+
 
 
 

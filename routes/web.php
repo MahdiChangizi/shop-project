@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\Coustomer\HomeController;
 use App\Http\Controllers\Coustomer\ProfileController;
 use App\Models\Admin\Brand;
@@ -93,6 +94,22 @@ Route::prefix('admin')->namespace('Admin')->group(function() {
         Route::get('/show/{comment}', [CommentController::class, 'show'])->name('admin.comment.show');
         Route::post('/ShowCreate/{comment}', [CommentController::class, 'ShowCreate'])->name('admin.comment.ShowCreate');
 
+    });
+
+
+
+    // banner
+    Route::prefix('banner')->namespace('Banner')->group(function() {
+        Route::get('/', [BannerController::class, 'index'])->name('admin.banner.index');
+
+        Route::get('/create', [BannerController::class, 'create'])->name('admin.banner.create');
+        Route::post('/store', [BannerController::class, 'store'])->name('admin.banner.store');
+
+        Route::get('/edit/{banner}', [BannerController::class, 'edit'])->name('admin.banner.edit');
+        Route::put('/update/{banner}', [BannerController::class, 'update'])->name('admin.banner.update');
+
+        Route::delete('/delete/{banner}', [BannerController::class, 'delete'])->name('admin.banner.delete');
+        Route::get('/status/{banner}', [BannerController::class, 'status'])->name('admin.banner.status');
     });
 
 

@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\BannerController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Coustomer\HomeController;
 use App\Http\Controllers\Coustomer\ProfileController;
 use App\Models\Admin\Brand;

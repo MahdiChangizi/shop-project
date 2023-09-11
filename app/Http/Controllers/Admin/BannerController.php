@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\BannerRequest;
 use App\Models\Admin\Banner;
 use App\Services\ImageService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class BannerController extends Controller
 {
@@ -29,20 +30,24 @@ class BannerController extends Controller
     public function store(BannerRequest $bannerRequest, ImageService $imageService)
     {
         $inputs = $bannerRequest->all();
+        $inputs['position'] = $bannerRequest->input('position');
+        $inputs['status'] = $bannerRequest->input('status');
 
         $file = $bannerRequest->file('image');
         $imageService->save($file);
         $inputs['image'] = $imageService->saveImageDb();
 
         $banner = Banner::create($inputs);
-        return to_route('admin.banner.index')->with('alert-success', 'بنر شما با موفقیت اضافه شد!');
+
+        return redirect()->route('admin.banner.index')->with('alert-success', 'بنر شما با موفقیت اضافه شد!');
     }
 
 
 
-    public function edit()
-    {
 
+    public function edit(Banner $banner)
+    {
+        return view('admin.banner.edit', compact('banner'));
     }
 
 
@@ -50,6 +55,14 @@ class BannerController extends Controller
     public function update()
     {
 
+    }
+
+
+    public function delete(Banner $banner)
+    {
+        File::delete(public_path($banner->image));
+        $banner->delete();
+        return to_route('admin.banner.index')->with('alert-success', 'بنر شما با موفقیت حذف شد!');
     }
 
 

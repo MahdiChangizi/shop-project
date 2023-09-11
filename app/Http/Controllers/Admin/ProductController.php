@@ -135,17 +135,18 @@ class ProductController extends Controller
 
 
     public function delete(Product $product)
-{
-    $attributes = $product->attributes;
+    {
+        $attributes = $product->attributes;
 
-    foreach ($attributes as $attribute) {
-        $delete = $product->attributes()->detach($attribute->id);
+        foreach ($attributes as $attribute) {
+            $delete = $product->attributes()->detach($attribute->id);
+        }
+
+        File::delete(public_path($product->image));
+        $product->delete();
+
+        return back();
     }
-
-    $product->delete();
-
-    return back();
-}
 
 
 

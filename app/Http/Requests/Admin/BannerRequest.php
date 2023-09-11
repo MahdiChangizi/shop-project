@@ -25,8 +25,8 @@ class BannerRequest extends FormRequest
         return [
             'url'       => ['required', 'min:5', 'max:255'],
             'status'    => ['required', 'in:0,1', 'numeric'],
-            'position'  => ['required', Rule::in(['top-right', 'top-left', 'between-items', 'bottom-items'])],
-            'image'     => ['required'],
+            'position' =>  ['required', Rule::in(['top-right', 'top-left', 'between-items', 'bottom-items'])],
+            'image'     => ['required', 'mimes:png,jpg,jpeg'],
         ];
     }
 }

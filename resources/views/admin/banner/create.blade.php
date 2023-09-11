@@ -45,7 +45,6 @@
           <label for="position" class="col-md-2 col-form-label">انتخاب موقعیت بنر</label>
           <div class="col-md-10">
                 <select name="position" id="position" class="form-select mb-2">
-                    <option value="{{ null }}">انتخاب موقعیت بنر</option>
                     <option value="top-right">بالا-راست</option>
                     <option value="top-left">بالا-چپ</option>
                     <option value="between-items">میان-محصولات</option>

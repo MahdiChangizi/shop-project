@@ -195,6 +195,8 @@ return [
 		"permissions" => "دسترسی",
 		"roles" => "نقش",
 		"province" => "استان",
-		"g-recaptcha-response" => "من ربات نیستم"
+		"g-recaptcha-response" => "من ربات نیستم",
+		"position" => "موقعیت",
+		"url" => "لینک",
     ],
 ];

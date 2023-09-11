@@ -22,7 +22,7 @@
                         <th>آیدی</th>
                         <th>لینک</th>
                         <th>بنر</th>
-                        {{-- <th>وضعیت</th> --}}
+                        <th>وضعیت</th>
                         <th>آپشن ها</th>
                     </tr>
                 </thead>
@@ -32,12 +32,14 @@
                         <tr>
                             <th>{{ $banner->id }}</th>
                             <td>{{ $banner->url }}</td>
-                            <td>{{ $banner->image }}</td>
-                            {{-- <td>{{ Str::limit($banner->description, 10, ' ...') }}</td> --}}
+                            <td>
+                                <img src="{{ asset($banner->image) }}" width="100" alt="{{ $banner->id }}">
+                            </td>
 
 
 
-                            {{-- @if ($banner->status == 1)
+
+                            @if ($banner->status == 1)
                                 <td>
                                     <a href="{{ route('admin.banner.status', $banner->id) }}"
                                         class="btn rounded-pill btn-sm btn-success waves-effect waves-light">فعال</a>
@@ -47,7 +49,7 @@
                                     <a href="{{ route('admin.banner.status', $banner->id) }}"
                                         class="btn rounded-pill btn-sm btn-danger waves-effect waves-light">غیر فعال</a>
                                 </td>
-                            @endif --}}
+                            @endif
 
                             <td>
                                 <a href="{{ route('admin.banner.edit', $banner->id) }}"

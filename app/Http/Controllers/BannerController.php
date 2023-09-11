@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin\Banner;
 use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
     public function index()
     {
-        // $banners = Banner
-        return view('admin.banner.index');
+        $banners = Banner::all();
+        return view('admin.banner.index', compact('banners'));
     }
 
 
@@ -17,14 +18,14 @@ class BannerController extends Controller
 
     public function create()
     {
-
+        return view('admin.banner.create');
     }
 
 
 
     public function store()
     {
-
+        dd(request()->all());
     }
 
 

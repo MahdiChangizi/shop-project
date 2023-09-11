@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('url');
             $table->text('image');
+            $table->string('status')->default(0);
+            $table->enum('position',['top-right', 'top-left', 'between-items', 'bottom-items']);
             $table->timestamps();
         });
     }

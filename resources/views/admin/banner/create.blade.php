@@ -2,33 +2,20 @@
 
 @section('content')
 
-<form action="{{ route('admin.category.store') }}" method="POST">
+<form action="{{ route('admin.banner.store') }}" method="POST">
     @csrf
 <div>
 
     <div class="card mb-4">
-      <h5 class="card-header mb-3">اضافه کردن دسته بندی</h5>
+      <h5 class="card-header mb-3">اضافه کردن بنر</h5>
       <div class="card-body">
 
         <div class="mb-3 row">
-          <label class="col-md-2 col-form-label">نام دسته بندی</label>
+          <label class="col-md-2 col-form-label">لینک بنر</label>
           <div class="col-md-10">
-            <input class="form-control mb-2" name="name" type="text" placeholder="نام را وارد کنید ..." value="{{ old('name') }}">
+            <input class="form-control mb-2" name="url" type="text" placeholder="لینک را وارد کنید ..." value="{{ old('url') }}">
 
-            @error('name')
-                <span class="text-danger mt-3">{{ $message }}</span>
-            @enderror
-
-          </div>
-        </div>
-
-
-        <div class="mb-3 row">
-          <label class="col-md-2 col-form-label">توضیحات</label>
-          <div class="col-md-10">
-            <textarea class="form-control mb-2" placeholder="توضیحات را وارد کنید ..." name="description" cols="30" rows="10">{{ old('description') }}</textarea>
-
-            @error('description')
+            @error('url')
                 <span class="text-danger mt-3">{{ $message }}</span>
             @enderror
 
@@ -38,8 +25,9 @@
 
 
 
+
         <div class="mb-3 row">
-          <label for="status" class="col-md-2 col-form-label">انتخاب وضعیت دسته بندی</label>
+          <label for="status" class="col-md-2 col-form-label">انتخاب وضعیت بنر</label>
           <div class="col-md-10">
                 <select name="status" id="status" class="form-select mb-2">
                     <option  value="{{ null }}">انتخاب وضعیت</option>
@@ -54,6 +42,23 @@
 
 
         <div class="mb-3 row">
+          <label for="position" class="col-md-2 col-form-label">انتخاب موقعیت بنر</label>
+          <div class="col-md-10">
+                <select name="position" id="position" class="form-select mb-2">
+                    <option value="{{ null }}">انتخاب موقعیت بنر</option>
+                    <option value="top-right">بالا-راست</option>
+                    <option value="top-left">بالا-چپ</option>
+                    <option value="between-items">میان-محصولات</option>
+                    <option value="bottom-items">پایین-محصولات</option>
+                </select>
+                @error('position')
+                        <span class="text-danger mt-3">{{ $message }}</span>
+                @enderror
+          </div>
+        </div>
+
+
+        {{-- <div class="mb-3 row">
           <label for="parent" class="col-md-2 col-form-label">انتخاب دستبندی</label>
           <div class="col-md-10">
             <select id="parent" name="parent_id" class="form-select mb-2">
@@ -66,7 +71,7 @@
                             <span class="text-danger mt-3">{{ $message }}</span>
                     @enderror
           </div>
-        </div>
+        </div> --}}
 
 
         <div class="m-auto float-end">

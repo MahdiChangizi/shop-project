@@ -30,13 +30,10 @@ class BannerController extends Controller
     public function store(BannerRequest $bannerRequest, ImageService $imageService)
     {
         $inputs = $bannerRequest->all();
-        $inputs['position'] = $bannerRequest->input('position');
-        $inputs['status'] = $bannerRequest->input('status');
 
         $file = $bannerRequest->file('image');
         $imageService->save($file);
         $inputs['image'] = $imageService->saveImageDb();
-
         $banner = Banner::create($inputs);
 
         return redirect()->route('admin.banner.index')->with('alert-success', 'بنر شما با موفقیت اضافه شد!');

@@ -51,7 +51,7 @@ class BannerController extends Controller
 
     public function update()
     {
-
+        dd('hi');
     }
 
 

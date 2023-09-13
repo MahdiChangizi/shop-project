@@ -31,7 +31,7 @@
                     @foreach ($banners as $banner)
                         <tr>
                             <th>{{ $banner->id }}</th>
-                            <td>{{ $banner->url }}</td>
+                            <td>{{ Str::limit($banner->url, 35, '...') }}</td>
                             <td>
                                 <img src="{{ asset($banner->image) }}" width="100" alt="{{ $banner->id }}">
                             </td>

@@ -2,8 +2,9 @@
 
 @section('content')
 
-<form action="{{ route('admin.banner.update', $banner->id) }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('admin.banner.update', $banner->id) }}" method="Post" enctype="multipart/form-data">
     @csrf
+    @method('PUT')
 <div>
 
     <div class="card mb-4">

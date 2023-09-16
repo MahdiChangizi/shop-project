@@ -49,9 +49,23 @@ class BannerController extends Controller
 
 
 
-    public function update()
+    public function update(Banner $banner, BannerRequest $bannerRequest, ImageService $imageService)
     {
-        dd('hi');
+        $inputs = $bannerRequest->all();
+
+        if ($bannerRequest->hasFile('image')) {
+            // delete file
+            File::delete(public_path($banner->image));
+
+            // update file
+            $file = $bannerRequest->file('image');
+            $imageService->save($file);
+            $inputs['image'] = $imageService->saveImageDb();
+        }
+        
+        $banner->update($inputs);
+
+        return redirect()->route('admin.banner.index')->with('alert-success', 'بنر شما با موفقیت ویرایش شد!');
     }
 
 

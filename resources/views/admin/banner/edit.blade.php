@@ -2,8 +2,9 @@
 
 @section('content')
 
-<form action="{{ route('admin.banner.update', $banner->id) }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('admin.banner.update', $banner->id) }}" method="Post" enctype="multipart/form-data">
     @csrf
+    @method('PUT')
 <div>
 
     <div class="card mb-4">
@@ -64,6 +65,11 @@
               @error('image')
                   <span class="text-danger mt-3">{{ $message }}</span>
               @enderror
+
+              <div class="mt-2 mb-4">
+                <img  class="w-50" src="{{ asset($banner->image) }}" alt="">
+            </div>
+
             </div>
           </div>
 

@@ -64,6 +64,11 @@
               @error('image')
                   <span class="text-danger mt-3">{{ $message }}</span>
               @enderror
+
+              <div class="mt-2 mb-4">
+                <img  class="w-50" src="{{ asset($banner->image) }}" alt="">
+            </div>
+
             </div>
           </div>
 

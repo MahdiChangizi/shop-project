@@ -49,9 +49,16 @@ class BannerController extends Controller
 
 
 
-    public function update()
+    public function update(BannerRequest $bannerRequest, ImageService $imageService)
     {
-        dd('hi');
+        $inputs = $bannerRequest->all();
+
+        $file = $bannerRequest->file('image');
+        $imageService->save($file);
+        $inputs['image'] = $imageService->saveImageDb();
+        $banner = Banner::create($inputs);
+
+        return redirect()->route('admin.banner.index')->with('alert-success', 'بنر شما با موفقیت اضافه شد!');
     }
 
 

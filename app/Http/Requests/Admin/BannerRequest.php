@@ -22,11 +22,23 @@ class BannerRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'url'       => ['required', 'min:5', 'max:255'],
-            'status'    => ['required', 'in:0,1', 'numeric'],
-            'position' =>  ['required', Rule::in(['top-right', 'top-left', 'between-items', 'bottom-items'])],
-            'image'     => ['required', 'mimes:png,jpg,jpeg'],
-        ];
+
+        if ($this->isMethod('post')) {
+            return [
+                'url'       => ['required', 'min:5', 'max:255'],
+                'status'    => ['required', 'in:0,1', 'numeric'],
+                'position' =>  ['required', Rule::in(['top-right', 'top-left', 'between-items', 'bottom-items'])],
+                'image'     => ['required', 'mimes:png,jpg,jpeg'],
+            ];
+        }
+        else {
+            return [
+                'url'       => ['required', 'min:5', 'max:255'],
+                'status'    => ['required', 'in:0,1', 'numeric'],
+                'position' =>  ['required', Rule::in(['top-right', 'top-left', 'between-items', 'bottom-items'])],
+                'image'     => ['mimes:png,jpg,jpeg'],
+            ];
+        }
+
     }
 }

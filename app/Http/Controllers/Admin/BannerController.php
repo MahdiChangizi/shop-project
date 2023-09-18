@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\BannerRequest;
 use App\Models\Admin\Banner;
-use App\Services\ImageService;
 use App\Services\SaveImage;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class BannerController extends Controller

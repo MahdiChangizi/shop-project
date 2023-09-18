@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryRequest;
 use App\Models\Admin\Category;
 
-use function PHPUnit\Framework\isNull;
 
 class CategoryController extends Controller
 {

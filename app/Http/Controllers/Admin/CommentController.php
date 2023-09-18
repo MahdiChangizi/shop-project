@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CommentRequest;
 use App\Models\Admin\Comment;
-use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
@@ -45,11 +45,9 @@ class CommentController extends Controller
 
 
 
-    public function ShowCreate(Comment $comment, Request $request)
+    public function ShowCreate(Comment $comment, CommentRequest $request)
     {
-        $inputs = $request->validate([
-            'comment' => ['required', 'min:5', 'max:1000']
-        ]);
+        $inputs = $request->all();
 
         $inputs['parent_id']  = $comment->id;
         $inputs['product_id'] = $comment->product_id;

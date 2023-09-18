@@ -21,8 +21,17 @@ class CityRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            
-        ];
+        if ($this->isMethod('post')) {
+            return [
+                'name' => ['required', 'min:5', 'max:20'],
+                'parent_id' => ['required', 'numeric', 'exists:provinces_and_cities,id'],
+                'status' => ['required', 'in:0,1', 'numeric']
+            ];
+        } else {
+            return [
+                'name' => ['required', 'min:5', 'max:20'],
+            'status' => ['required', 'in:0,1', 'numeric']
+            ];
+        }
     }
 }

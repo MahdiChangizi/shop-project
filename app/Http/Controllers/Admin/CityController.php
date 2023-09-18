@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\CityRequest;
 use App\Models\Admin\Provinces_and_city;
 use Illuminate\Http\Request;
 
@@ -24,14 +25,9 @@ class CityController extends Controller
 
 
 
-    public function store(Request $request)
+    public function store(CityRequest $request)
     {
-        $inputs = $request->validate([
-            'name' => ['required', 'min:5', 'max:20'],
-            'parent_id' => ['required', 'numeric', 'exists:provinces_and_cities,id'],
-            'status' => ['required', 'in:0,1', 'numeric']
-        ]);
-
+        $inputs = $request->all();
         Provinces_and_city::create($inputs);
 
         return to_route('admin.city.index')->with('alert-success', 'شهر جدید با موفقیت ایجاد شد!');
@@ -47,13 +43,9 @@ class CityController extends Controller
 
 
 
-    public function update(Provinces_and_city $city, Request $request)
+    public function update(Provinces_and_city $city, CityRequest $request)
     {
-        $inputs = $request->validate([
-            'name' => ['required', 'min:5', 'max:20'],
-            'status' => ['required', 'in:0,1', 'numeric']
-        ]);
-
+        $inputs = $request->all();
         $city->update($inputs);
 
         return to_route('admin.city.index')->with('alert-success', 'شهر شما با موفقیت ویرایش شد!');

@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\BrandRequest;
 use App\Models\Admin\Brand;
-use App\Services\ImageService;
-use Illuminate\Http\Request;
+use App\Services\SaveImage;
 use Illuminate\Support\Facades\File;
 
 class BrandController extends Controller
@@ -26,13 +25,13 @@ class BrandController extends Controller
 
 
 
-    public function store(BrandRequest $request, ImageService $imageService)
+    public function store(BrandRequest $request, SaveImage $saveImage)
     {
         $inputs = $request->all();
 
         $image = $request->file('logo');
-        $imageService->save($image, 'Brands');
-        $inputs['logo'] = $imageService->saveImageDb();
+        $saveImage->save($image, 'Brands');
+        $inputs['logo'] = $saveImage->saveImageDb();
 
         Brand::create($inputs);
         return to_route('admin.brand.index')->with('alert-success', 'برند شما با موفقیت اضافه شد!');
@@ -47,7 +46,7 @@ class BrandController extends Controller
     }
 
 
-    public function update(Brand $brand, BrandRequest $brandRequest, ImageService $imageService)
+    public function update(Brand $brand, BrandRequest $brandRequest, SaveImage $saveImage)
     {
         $inputs = $brandRequest->all();
 
@@ -55,8 +54,8 @@ class BrandController extends Controller
         {
             File::delete(public_path($brand->logo));
             $image = $brandRequest->file('logo');
-            $imageService->save($image, 'Brands');
-            $inputs['logo'] = $imageService->saveImageDb();
+            $saveImage->save($image, 'Brands');
+            $inputs['logo'] = $saveImage->saveImageDb();
         }
 
         $brand->update($inputs);

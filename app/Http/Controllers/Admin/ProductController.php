@@ -8,8 +8,7 @@ use App\Models\Admin\Attribute;
 use App\Models\Admin\Brand;
 use App\Models\Admin\Category;
 use App\Models\Admin\Product;
-use App\Services\ImageService;
-use Illuminate\Http\Request;
+use App\Services\SaveImage;
 use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
@@ -33,13 +32,13 @@ class ProductController extends Controller
 
 
 
-    public function store(ProductRequest $productRequest, ImageService $imageService)
+    public function store(ProductRequest $productRequest, SaveImage $saveImage)
     {
         // create Product
         $inputs = $productRequest->all();
         $image  = $productRequest->file('image');
-        $imageService->save($image);
-        $inputs['image'] = $imageService->saveImageDb();
+        $saveImage->save($image, 'Products');
+        $inputs['image'] = $saveImage->saveImageDb();
 
         $product = Product::create($inputs);
 
@@ -82,7 +81,7 @@ class ProductController extends Controller
 
 
 
-    public function update(ProductRequest $productRequest, ImageService $imageService, $id)
+    public function update(ProductRequest $productRequest, SaveImage $saveImage, $id)
     {
         // Find the product to update
         $product = Product::findOrFail($id);
@@ -94,12 +93,12 @@ class ProductController extends Controller
         $newImage = $productRequest->file('image');
         if (!is_null($newImage)) {
             // Save the new image
-            $imageService->save($newImage);
-            $inputs['image'] = $imageService->saveImageDb();
+            $saveImage->save($newImage, 'Products');
+            $inputs['image'] = $saveImage->saveImageDb();
 
             // Delete the old image if necessary
             if (!is_null($product->image)) {
-                $imageService->delete($product->image); // Assuming you have a method to delete images
+                File::delete(public_path($product->image));
             }
         }
 

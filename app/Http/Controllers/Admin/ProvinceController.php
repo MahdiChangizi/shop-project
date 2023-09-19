@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Province\ProvinceStoreRequest;
+use App\Http\Requests\Admin\Province\ProvinceUpdateRequest;
 use App\Models\Admin\Provinces_and_city;
-use Illuminate\Http\Request;
 
 class ProvinceController extends Controller
 {
@@ -23,12 +24,9 @@ class ProvinceController extends Controller
 
 
 
-    public function store(Request $request)
+    public function store(ProvinceStoreRequest $request)
     {
-        $inputs = $request->validate([
-            'name' => ['required', 'min:5', 'max:20'],
-            'status' => ['required', 'in:0,1', 'numeric']
-        ]);
+        $inputs = $request->all();
 
         Provinces_and_city::create($inputs);
 
@@ -44,12 +42,9 @@ class ProvinceController extends Controller
 
 
 
-    public function update(Provinces_and_city $province, Request $request)
+    public function update(Provinces_and_city $province, ProvinceUpdateRequest $request)
     {
-        $inputs = $request->validate([
-            'name' => ['required', 'min:5', 'max:20'],
-            'status' => ['required', 'in:0,1', 'numeric']
-        ]);
+        $inputs = $request->all();
 
         $province->update($inputs);
 

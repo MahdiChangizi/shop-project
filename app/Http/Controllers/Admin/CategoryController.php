@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\CategoryRequest;
+use App\Http\Requests\Admin\Category\CategoryStoreRequest;
+use App\Http\Requests\Admin\Category\CategoryUpdateRequest;
 use App\Models\Admin\Category;
 
 
@@ -29,7 +30,7 @@ class CategoryController extends Controller
 
 
     /* -- create a category -- */
-    public function store(CategoryRequest $request) {
+    public function store(CategoryStoreRequest $request) {
         $inputs = $request->all();
         Category::create($inputs);
         return to_route('admin.category.index')->with('alert-success', 'دسته بندی شما با موفقیت اضافه شد');
@@ -50,7 +51,7 @@ class CategoryController extends Controller
 
 
     /* -- update a category -- */
-    public function update(Category $category, CategoryRequest $categoryRequest) {
+    public function update(Category $category, CategoryUpdateRequest $categoryRequest) {
         $inputs = $categoryRequest->all();
         $inputs['parent_id'] = $categoryRequest->parent_id;
         $result = $category->update($inputs);

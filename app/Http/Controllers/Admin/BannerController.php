@@ -34,8 +34,8 @@ class BannerController extends Controller
         $file = $bannerRequest->file('image');
         $saveImage->save($file, '/banners/');
         $inputs['image'] = $saveImage->saveImageDb();
-        $banner = Banner::create($inputs);
 
+        $banner = Banner::create($inputs);
         return redirect()->route('admin.banner.index')->with('alert-success', 'بنر شما با موفقیت اضافه شد!');
     }
 

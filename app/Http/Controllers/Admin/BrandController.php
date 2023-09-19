@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\BrandRequest;
+use App\Http\Requests\Admin\Brand\brandStoreRequest;
+use App\Http\Requests\Admin\Brand\brandUpdateRequest;
 use App\Models\Admin\Brand;
 use App\Services\SaveImage;
 use Illuminate\Support\Facades\File;
@@ -25,7 +26,7 @@ class BrandController extends Controller
 
 
 
-    public function store(BrandRequest $request, SaveImage $saveImage)
+    public function store(brandStoreRequest $request, SaveImage $saveImage)
     {
         $inputs = $request->all();
 
@@ -46,7 +47,7 @@ class BrandController extends Controller
     }
 
 
-    public function update(Brand $brand, BrandRequest $brandRequest, SaveImage $saveImage)
+    public function update(Brand $brand, brandUpdateRequest $brandRequest, SaveImage $saveImage)
     {
         $inputs = $brandRequest->all();
 

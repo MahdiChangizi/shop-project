@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\BannerRequest;
+use App\Http\Requests\Admin\Banner\BannerStoreRequest;
+use App\Http\Requests\Admin\Banner\BannerUpdateRequest;
 use App\Models\Admin\Banner;
 use App\Services\SaveImage;
 use Illuminate\Support\Facades\File;
@@ -26,15 +27,15 @@ class BannerController extends Controller
 
 
 
-    public function store(BannerRequest $bannerRequest, SaveImage $saveImage)
+    public function store(BannerStoreRequest $bannerRequest, SaveImage $saveImage)
     {
         $inputs = $bannerRequest->all();
 
         $file = $bannerRequest->file('image');
         $saveImage->save($file, '/banners/');
         $inputs['image'] = $saveImage->saveImageDb();
-        $banner = Banner::create($inputs);
 
+        $banner = Banner::create($inputs);
         return redirect()->route('admin.banner.index')->with('alert-success', 'بنر شما با موفقیت اضافه شد!');
     }
 
@@ -48,7 +49,7 @@ class BannerController extends Controller
 
 
 
-    public function update(Banner $banner, BannerRequest $bannerRequest, SaveImage $saveImage)
+    public function update(Banner $banner, BannerUpdateRequest $bannerRequest, SaveImage $saveImage)
     {
         $inputs = $bannerRequest->all();
 
@@ -61,7 +62,7 @@ class BannerController extends Controller
             $saveImage->save($file, '/banners/');
             $inputs['image'] = $saveImage->saveImageDb();
         }
-        
+
         $banner->update($inputs);
 
         return redirect()->route('admin.banner.index')->with('alert-success', 'بنر شما با موفقیت ویرایش شد!');

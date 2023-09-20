@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\ProductRequest;
+use App\Http\Requests\Admin\Product\ProductStoreRequest;
+use App\Http\Requests\Admin\Product\ProductUpdateRequest;
 use App\Models\Admin\Attribute;
 use App\Models\Admin\Brand;
 use App\Models\Admin\Category;
@@ -32,7 +33,7 @@ class ProductController extends Controller
 
 
 
-    public function store(ProductRequest $productRequest, SaveImage $saveImage)
+    public function store(ProductStoreRequest $productRequest, SaveImage $saveImage)
     {
         // create Product
         $inputs = $productRequest->all();
@@ -81,7 +82,7 @@ class ProductController extends Controller
 
 
 
-    public function update(ProductRequest $productRequest, SaveImage $saveImage, $id)
+    public function update(ProductUpdateRequest $productRequest, SaveImage $saveImage, $id)
     {
         // Find the product to update
         $product = Product::findOrFail($id);

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\CityRequest;
+use App\Http\Requests\Admin\City\CityStoreRequest;
+use App\Http\Requests\Admin\City\CityUpdateRequest;
 use App\Models\Admin\Provinces_and_city;
 
 class CityController extends Controller
@@ -24,7 +25,7 @@ class CityController extends Controller
 
 
 
-    public function store(CityRequest $request)
+    public function store(CityStoreRequest $request)
     {
         $inputs = $request->all();
         Provinces_and_city::create($inputs);
@@ -42,7 +43,7 @@ class CityController extends Controller
 
 
 
-    public function update(Provinces_and_city $city, CityRequest $request)
+    public function update(Provinces_and_city $city, CityUpdateRequest $request)
     {
         $inputs = $request->all();
         $city->update($inputs);

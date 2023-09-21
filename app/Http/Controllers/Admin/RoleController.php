@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Role\RoleStoreRequest;
+use App\Http\Requests\Admin\Role\RoleUpdateRequest;
 use App\Models\Admin\Permission;
 use App\Models\Admin\Role;
-use Illuminate\Http\Request;
+
 
 class RoleController extends Controller
 {
@@ -28,12 +30,9 @@ class RoleController extends Controller
 
 
 
-    public function store(Request $request)
+    public function store(RoleStoreRequest $request)
     {
-        $inputs = $request->validate([
-            'name' => ['required', 'min:5', 'max:20'],
-            'permissions' => ['required', 'array']
-        ]);
+        $inputs = $request->all();
 
         $role = Role::create($inputs);
         $role->permissions()->sync($inputs['permissions']);
@@ -51,12 +50,9 @@ class RoleController extends Controller
 
 
 
-    public function update(Role $role, Request $request)
+    public function update(Role $role, RoleUpdateRequest $request)
     {
-        $inputs = $request->validate([
-            'name' => ['required', 'min:5', 'max:20'],
-            'permissions' => ['required', 'array']
-        ]);
+        $inputs = $request->all();
 
         $result = $role->update($inputs);
         $role->permissions()->sync($inputs['permissions']);

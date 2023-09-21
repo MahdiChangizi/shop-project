@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Permission\PermissionStoreRequest;
+use App\Http\Requests\Admin\Permission\PermissionUpdateRequest;
 use App\Models\Admin\Permission;
-use Illuminate\Http\Request;
 
 class PermissionController extends Controller
 {
@@ -26,11 +27,9 @@ class PermissionController extends Controller
 
 
 
-    public function store(Request $request)
+    public function store(PermissionStoreRequest $request)
     {
-        $inputs = $request->validate([
-            'name' => ['required', 'min:5', 'max:20']
-        ]);
+        $inputs = $request->all();
 
         Permission::create($inputs);
 
@@ -46,11 +45,9 @@ class PermissionController extends Controller
 
 
 
-    public function update(Permission $permission, Request $request)
+    public function update(Permission $permission, PermissionUpdateRequest $request)
     {
-        $inputs = $request->validate([
-            'name' => ['required', 'min:5', 'max:20']
-        ]);
+        $inputs = $request->all();
 
         $permission->update($inputs);
 

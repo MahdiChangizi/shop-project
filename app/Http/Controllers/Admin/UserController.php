@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\User\PermissionCreateRequest;
+use App\Http\Requests\Admin\User\RoleCreateRequest;
 use App\Models\Admin\Permission;
 use App\Models\Admin\Role;
 use App\Models\User;
-use Illuminate\Http\Request;
+
 
 class UserController extends Controller
 {
@@ -34,11 +36,9 @@ class UserController extends Controller
 
 
 
-    public function permissionCreate(User $user, Request $request)
+    public function permissionCreate(User $user, PermissionCreateRequest $request)
     {
-        $inputs = $request->validate([
-            'permissions' => ['required', 'array', 'exists:permissions,id']
-        ]);
+        $inputs = $request->all();
 
         $user->permissions()->sync($inputs['permissions']);
         return to_route('admin.user.index')->with('alert-success', 'دسترسی برای کاربر با موفقیت ایجاد شد😄!');
@@ -53,11 +53,9 @@ class UserController extends Controller
     }
 
 
-    public function roleCreate(User $user, Request $request)
+    public function roleCreate(User $user, RoleCreateRequest $request)
     {
-        $inputs = $request->validate([
-            'roles' => ['required', 'array', 'exists:roles,id']
-        ]);
+        $inputs = $request->all();
 
         $user->roles()->sync($inputs['roles']);
         return to_route('admin.user.index')->with('alert-success', 'نقش برای کاربر با موفقیت ایجاد شد😄!');

@@ -98,4 +98,9 @@ class User extends Authenticatable
         return $this->hasMany(ActiveCode::class);
     }
 
+
+    public function getFullNameAttribute()
+    {
+        return $this->profile->first_name . ' ' . $this->profile->last_name ;
+    }
 }

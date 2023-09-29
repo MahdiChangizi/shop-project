@@ -12,10 +12,16 @@
                 <div class="flex-grow-1 mt-3 mt-sm-5">
                     <div class="d-flex align-items-md-end align-items-sm-start align-items-center justify-content-md-between justify-content-start mx-4 flex-md-row flex-column gap-4">
                         <div class="user-profile-info">
-                            <h4>{{ auth()->user()->FullName }}</h4>
+                          @if (auth()->user()->profile)
+                          <h4>{{ auth()->user()->FullName }}</h4>
+                          @else
+                          <a href="{{ route('admin.profile.setting') }}">پروفایل خود را کامل کنید!</a>
+                          @endif
                             <ul class="list-inline mb-0 d-flex align-items-center flex-wrap justify-content-sm-start justify-content-center gap-2">
-                                <li class="list-inline-item"><i class="ti ti-color-swatch"></i> ادمین</li>
-                                <li class="list-inline-item"><i class="ti ti-calendar"></i> {{ jdate(auth()->user()->created_at)->format('%A, %d %B %Y') }}</li>
+                                @if (auth()->user()->profile)
+                                  <li class="list-inline-item"><i class="ti ti-color-swatch"></i> ادمین</li>
+                                  <li class="list-inline-item"><i class="ti ti-calendar"></i> {{ jdate(auth()->user()->created_at)->format('%A, %d %B %Y') }}</li>
+                                @endif
                             </ul>
                         </div>
                         <a href="{{ route('admin.profile.setting') }}" class="btn btn-primary waves-effect waves-light">
@@ -30,7 +36,7 @@
 
 
 
-
+@if (auth()->user()->profile)
 <div class="row">
     <div class="col-xl-4 col-lg-5 col-md-5">
       <!-- About User -->
@@ -66,6 +72,7 @@
       <!--/ About User -->
     </div>
     {{--  --}}
-  </div>
+</div>
+@endif
 
 @endsection

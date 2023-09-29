@@ -198,5 +198,6 @@ return [
 		"g-recaptcha-response" => "من ربات نیستم",
 		"position" => "موقعیت",
 		"url" => "لینک",
+		"profile" => "تصویر",
     ],
 ];

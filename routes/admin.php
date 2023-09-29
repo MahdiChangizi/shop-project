@@ -10,8 +10,7 @@ use App\Http\Controllers\Admin\ProvinceController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BannerController;
-
-
+use App\Http\Controllers\Admin\ProfileController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -171,5 +170,14 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function()
     });
     // Provinces and cities
 
+
+
+    // roles
+    Route::prefix('profile')->namespace('Role')->group(function() {
+        Route::get('/', [ProfileController::class, 'index'])->name('admin.profile.index');
+        
+        Route::get('/setting/{user}', [ProfileController::class, 'setting'])->name('admin.profile.setting');
+        Route::put('setting/update/{user}', [RoleControllerProfileController::class, 'update'])->name('admin.profile.settingUpdate');
+    });
 
 });

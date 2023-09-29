@@ -9,8 +9,6 @@ use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\Admin\ActiveCode;
 use App\Models\User;
 use App\Notifications\CodeNotification;
-use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -65,8 +63,10 @@ class AuthController extends Controller
             {
                 $code = ActiveCode::generateCode($user);
                 $request->user()->notify(new CodeNotification($code, $user['mobile']));
+                toast('کد فعال سازی ارسال شد!' ,'success');
                 return to_route('auth.activationForm');
             } else  {
+                toast('شما با موفقیت وارد حساب خود شدید!' ,'success');
                 return to_route('coustomer.profile');
             }
         }
@@ -146,6 +146,8 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
+        toast('شما با موفقیت از حساب خود خارج شدید!' ,'success');
+        return to_route('coustomer.home');
     }
 
 }

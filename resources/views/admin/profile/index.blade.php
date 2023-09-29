@@ -18,7 +18,7 @@
                                 <li class="list-inline-item"><i class="ti ti-calendar"></i> {{ jdate(auth()->user()->created_at)->format('%A, %d %B %Y') }}</li>
                             </ul>
                         </div>
-                        <a href="" class="btn btn-primary waves-effect waves-light">
+                        <a href="{{ route('admin.profile.setting') }}" class="btn btn-primary waves-effect waves-light">
                             <i class="ti ti-user-check me-1"></i>ویرایش
                         </a>
                     </div>

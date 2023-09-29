@@ -176,8 +176,8 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function()
     Route::prefix('profile')->namespace('Role')->group(function() {
         Route::get('/', [ProfileController::class, 'index'])->name('admin.profile.index');
         
-        Route::get('/setting/{user}', [ProfileController::class, 'setting'])->name('admin.profile.setting');
-        Route::put('setting/update/{user}', [RoleControllerProfileController::class, 'update'])->name('admin.profile.settingUpdate');
+        Route::get('/setting', [ProfileController::class, 'setting'])->name('admin.profile.setting');
+        Route::put('setting/update/{user}', [ProfileController::class, 'update'])->name('admin.profile.settingUpdate');
     });
 
 });

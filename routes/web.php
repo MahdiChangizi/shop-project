@@ -3,7 +3,6 @@
 
 use App\Http\Controllers\Coustomer\HomeController;
 use App\Http\Controllers\Coustomer\ProfileController;
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,11 +27,6 @@ Route::prefix('')->namespace('Coustomer')->group(function() {
     Route::put('updateProfile/{user}', [ProfileController::class, 'update'])->name('coustomer.updateProfile');
 
 });
-
-
-// Route::get('', function(){
-//     // 
-// });
 
 
 require __DIR__.'/admin.php';

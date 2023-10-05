@@ -34,6 +34,7 @@ class RegisterController extends Controller
         /* csend code to user */
         $request->user()->notify(new CodeNotification($code, $user['mobile']));
 
+        
         if($user['mobile_verified_at'] == null)
         {
             return to_route('auth.activationForm');

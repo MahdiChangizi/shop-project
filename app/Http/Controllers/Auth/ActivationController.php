@@ -28,7 +28,7 @@ class ActivationController extends Controller
                     if ($request->mobile == auth()->user()->mobile) {
 
                         if ($request->code == $code->code) {
-                            $verified = auth()->user()->mobile_verified_at = now();
+                            auth()->user()->mobile_verified_at = now();
                             auth()->user()->save();
                             auth()->user()->codes()->delete();
 

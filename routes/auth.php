@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth\ActivationController;
-use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,20 +16,22 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('auth')->namespace('Auth')->group(function() {
 
     Route::middleware('guest')->group(function() {
-        // register a user
+        /* register a user */
         Route::get('/registerForm', [RegisterController::class, 'registerForm'])->name('auth.registerForm');
         Route::post('/register', [RegisterController::class, 'register'])->name('auth.register');
 
-        // login
+        /* login */
         Route::get('/loginForm', [LoginController::class, 'loginForm'])->name('auth.loginForm');
         Route::post('/login', [LoginController::class, 'login'])->name('auth.login');
     });
 
     Route::middleware('auth')->group(function() {
-        // active code for user
+        /* active code for user */
         Route::get('/activationForm', [ActivationController::class, 'activationForm'])->name('auth.activationForm');
         Route::post('/activation', [ActivationController::class, 'activation'])->name('auth.activation');
-        Route::post('logout', [AuthController::class, 'logout'])->name('auth.logout');
+        
+        /* logout */
+        Route::post('logout', [LogoutController::class, 'logout'])->name('auth.logout');
     });
 
 });

@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthController; 
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->namespace('Auth')->middleware('guest')->group(function() {
     // register a user
-    Route::get('/registerForm', [AuthController::class, 'registerForm'])
+    Route::get('/registerForm', [RegisterController::class, 'registerForm'])
     ->name('auth.registerForm');
-    Route::post('/register', [AuthController::class, 'register'])
+    Route::post('/register', [RegisterController::class, 'register'])
     ->name('auth.register');
 
     // login

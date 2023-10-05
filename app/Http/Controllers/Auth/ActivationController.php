@@ -11,7 +11,7 @@ class ActivationController extends Controller
     public function activationForm()
     {
         /* checke login user */
-        if(auth()->check())
+        if (auth()->check())
             return auth()->user()->mobile_verified_at == null ? view('auth.activation') : abort('404');
         else
             return abort('404');
@@ -20,46 +20,35 @@ class ActivationController extends Controller
 
     public function activation(ActivationRequest $request)
     {
-        if(auth()->check())
-        {
-
+        if (auth()->check()) {
             if (auth()->user()->mobile_verified_at == null) {
 
                 $code = auth()->user()->codes()->where('expired_at', '>', now())->first();
                 if ($code) {
-                    if($request->mobile == auth()->user()->mobile)
-                    {
+                    if ($request->mobile == auth()->user()->mobile) {
 
-                        if($request->code == $code->code)
-                        {
-                            auth()->user()->mobile_verified_at = now();
+                        if ($request->code == $code->code) {
+                            $verified = auth()->user()->mobile_verified_at = now();
                             auth()->user()->save();
                             auth()->user()->codes()->delete();
 
-                            toast('حساب شما با موفقیت فعال شد!' ,'success');
+                            toast('حساب شما با موفقیت فعال شد!', 'success');
                             return to_route('coustomer.profile');
-                        }
-                        else
-                        {
-                            toast('کد وارد شده معتبر نیست!' ,'error');
+                        } else {
+                            toast('کد وارد شده معتبر نیست!', 'error');
                             return back();
                         }
-
-
-                    }   else {
-                        toast('شماره موبایل وارد شده معتبر نیست!' ,'error');
+                    } else {
+                        toast('شماره موبایل وارد شده معتبر نیست!', 'error');
                         return back();
                     }
-                }
-                else {
-                    toast('کد ارسال شده معتبر نیست!' ,'error');
+                } else {
+                    toast('کد ارسال شده معتبر نیست!', 'error');
                     return back();
                 }
-            }
-            else {
+            } else {
                 abort('404');
             }
         }
     }
-
 }

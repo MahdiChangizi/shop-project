@@ -23,21 +23,23 @@ class RegisterController extends Controller
 
         /* create user */
         $user = User::create($inputs);
+        
+        /* login user */
         if($user)
         {
             Auth::loginUsingId($user->id);
         }
-
-        /* generate code */
-        $code = ActiveCode::generateCode($user);
-
-        /* csend code to user */
-        $request->user()->notify(new CodeNotification($code, $user['mobile']));
-
+        
         if($user['mobile_verified_at'] == null)
         {
+            /* generate code  =>  csend code to user => return to rute activation*/
+            $code = ActiveCode::generateCode($user);
+            $request->user()->notify(new CodeNotification($code, $user['mobile']));
+            
             return to_route('auth.activationForm');
-        } else  {
+        } 
+        else 
+        {
             return to_route('coustomer.profile');
         }
     }

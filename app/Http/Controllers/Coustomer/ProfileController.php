@@ -22,28 +22,28 @@ class ProfileController extends Controller
 
 
     public function update(User $user, ProfileRequest $request)
-{
-    $inputs = $request->all();
+    {
+        $inputs = $request->all();
 
-    $user->update([
-        'userName' => $inputs['userName']
-    ]);
+        $user->update([
+            'userName' => $inputs['userName']
+        ]);
 
-    if ($user->profile) {
-        $user->profile->update([
-            'first_name' => $inputs['first_name'],
-            'last_name'  => $inputs['last_name']
-        ]);
-    } else {
-        $user->profile()->create([
-            'first_name' => $inputs['first_name'],
-            'last_name'  => $inputs['last_name']
-        ]);
+        if ($user->profile) {
+            $user->profile->update([
+                'first_name' => $inputs['first_name'],
+                'last_name'  => $inputs['last_name']
+            ]);
+        } else {
+            $user->profile()->create([
+                'first_name' => $inputs['first_name'],
+                'last_name'  => $inputs['last_name']
+            ]);
+        }
+
+        toast('پروفایل شما با موفقیت ویرایش شد!', 'success');
+        return to_route('coustomer.profile');
     }
-
-    toast('پروفایل شما با موفقیت ویرایش شد!', 'success');
-    return to_route('coustomer.profile');
-}
 
 
 }

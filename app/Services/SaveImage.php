@@ -18,7 +18,7 @@ class SaveImage {
     {
         $this->directory = 'assets/images/' . trim($directory, '/') . '/' . now()->year . '/' . now()->month . '/' . now()->day;
         $this->imageName = date("YmWdhms") . '_' . Str::random(10) . '.' . $file->extension();
-        $this->imagePath = public_path($directory);
+        $this->imagePath = storage_path($directory);
 
         if ($file) 
         {
@@ -29,11 +29,11 @@ class SaveImage {
                     File::makeDirectory($this->directory, $mode = 0777, true, true);
                 }
                 $img = Image::make($file)->resize($height, $width);
-                $img->save(public_path($this->directory . '/' . $this->imageName));
+                $img->save(storage_path($this->directory . '/' . $this->imageName));
             }
             catch (\Exception $e) 
             {
-                File::delete(public_path($this->directory));
+                File::delete(storage_path($this->directory));
             }
         }
     }

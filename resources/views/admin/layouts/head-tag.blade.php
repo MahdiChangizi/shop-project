@@ -1,10 +1,10 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-<title>Vuexy - Bootstrap Admin Template</title>
+<title>Admin Panel</title>
 
 <!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
+<link rel="icon" type="image/x-icon" href="{{ asset('assets/img/fava.jpg') }}" />
 
 <!-- Icons -->
 <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/fontawesome.css') }}" />

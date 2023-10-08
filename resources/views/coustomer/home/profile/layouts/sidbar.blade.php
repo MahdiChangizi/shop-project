@@ -12,10 +12,14 @@
                 <span class="sidebar-nav-item-title"><a class="p-3" href="my-favorites.html">لیست علاقه مندی</a></span>
             </section>
             <section class="sidebar-nav-item">
-                <span class="sidebar-nav-item-title"><a class="p-3" href="my-profile.html">ویرایش حساب</a></span>
+                <span class="sidebar-nav-item-title"><a class="p-3" href="{{ route('coustomer.profile') }}">ویرایش حساب</a></span>
             </section>
             <section class="sidebar-nav-item">
-                <span class="sidebar-nav-item-title"><a class="p-3" href="#">خروج از حساب کاربری</a></span>
+                <span class="sidebar-nav-item-title">
+                    <form action="{{ route('auth.logout') }}" method="POST">
+                        <button class="btn p-3">خروج از حساب کاربری</button>
+                    </form>
+                </span>
             </section>
 
         </section>

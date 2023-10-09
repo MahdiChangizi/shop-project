@@ -25,12 +25,12 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function()
     Route::prefix('category')->namespace('Category')->group(function() {
         Route::get('/', [CategoryController::class, 'index'])->name('admin.category.index');
         Route::get('/create', [CategoryController::class, 'create'])->name('admin.category.create');
-        Route::post('/store', [CategoryController::class, 'store'])->name('admin.category.store');
+        Route::post('/', [CategoryController::class, 'store'])->name('admin.category.store');
 
         Route::get('/edit/{category}', [CategoryController::class, 'edit'])->name('admin.category.edit');
-        Route::put('/update/{category}', [CategoryController::class, 'update'])->name('admin.category.update');
+        Route::put('/{category}', [CategoryController::class, 'update'])->name('admin.category.update');
 
-        Route::delete('/delete/{category}', [CategoryController::class, 'delete'])->name('admin.category.delete');
+        Route::delete('/{category}', [CategoryController::class, 'delete'])->name('admin.category.delete');
         Route::get('/status/{category}', [CategoryController::class, 'status'])->name('admin.category.status');
     });
 
@@ -56,12 +56,12 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function()
     Route::prefix('product')->namespace('Product')->group(function() {
         Route::get('/', [ProductController::class, 'index'])->name('admin.product.index');
         Route::get('/create', [ProductController::class, 'create'])->name('admin.product.create');
-        Route::post('/store', [ProductController::class, 'store'])->name('admin.product.store');
+        Route::post('/', [ProductController::class, 'store'])->name('admin.product.store');
 
         Route::get('/edit/{product}', [ProductController::class, 'edit'])->name('admin.product.edit');
-        Route::put('/update/{product}', [ProductController::class, 'update'])->name('admin.product.update');
+        Route::put('/{product}', [ProductController::class, 'update'])->name('admin.product.update');
 
-        Route::delete('/delete/{product}', [ProductController::class, 'delete'])->name('admin.product.delete');
+        Route::delete('/{product}', [ProductController::class, 'delete'])->name('admin.product.delete');
         Route::get('/status/{product}', [ProductController::class, 'status'])->name('admin.product.status');
 
         Route::get('/attributes/{product}', [ProductController::class, 'attribute'])->name('admin.product.attributes');
@@ -72,10 +72,10 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function()
     // comment
     Route::prefix('comment')->namespace('Comment')->group(function() {
         Route::get('/', [CommentController::class, 'index'])->name('admin.comment.index');
-        Route::delete('/delete/{comment}', [CommentController::class, 'delete'])->name('admin.comment.delete');
+        Route::delete('//{comment}', [CommentController::class, 'delete'])->name('admin.comment.delete');
         Route::get('/status/{comment}', [CommentController::class, 'status'])->name('admin.comment.status');
         Route::get('/show/{comment}', [CommentController::class, 'show'])->name('admin.comment.show');
-        Route::post('/ShowCreate/{comment}', [CommentController::class, 'ShowCreate'])->name('admin.comment.ShowCreate');
+        Route::post('/{comment}', [CommentController::class, 'ShowCreate'])->name('admin.comment.ShowCreate');
 
     });
 
@@ -86,12 +86,12 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function()
         Route::get('/', [BannerController::class, 'index'])->name('admin.banner.index');
 
         Route::get('/create', [BannerController::class, 'create'])->name('admin.banner.create');
-        Route::post('/store', [BannerController::class, 'store'])->name('admin.banner.store');
+        Route::post('/', [BannerController::class, 'store'])->name('admin.banner.store');
 
         Route::get('/edit/{banner}', [BannerController::class, 'edit'])->name('admin.banner.edit');
-        Route::put('/update/{banner}', [BannerController::class, 'update'])->name('admin.banner.update');
+        Route::put('/{banner}', [BannerController::class, 'update'])->name('admin.banner.update');
 
-        Route::delete('/delete/{banner}', [BannerController::class, 'delete'])->name('admin.banner.delete');
+        Route::delete('/{banner}', [BannerController::class, 'delete'])->name('admin.banner.delete');
         Route::get('/status/{banner}', [BannerController::class, 'status'])->name('admin.banner.status');
     });
 
@@ -102,7 +102,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function()
     Route::prefix('user')->namespace('User')->group(function() {
         Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
         Route::get('/admin', [UserController::class, 'indexAdmin'])->name('admin.user.indexAdmin');
-        Route::delete('/delete/{user}', [UserController::class, 'delete'])->name('admin.user.delete');
+        Route::delete('/{user}', [UserController::class, 'delete'])->name('admin.user.delete');
 
         Route::get('/permission/{user}', [UserController::class, 'permission'])->name('admin.user.permission');
         Route::post('/permissionCreate/{user}', [UserController::class, 'permissionCreate'])->name('admin.user.permission.create');
@@ -134,10 +134,10 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function()
     Route::prefix('role')->namespace('Role')->group(function() {
         Route::get('/', [RoleController::class, 'index'])->name('admin.role.index');
         Route::get('/create', [RoleController::class, 'create'])->name('admin.role.create');
-        Route::post('/store', [RoleController::class, 'store'])->name('admin.role.store');
+        Route::post('/', [RoleController::class, 'store'])->name('admin.role.store');
         Route::get('/edit/{role}', [RoleController::class, 'edit'])->name('admin.role.edit');
-        Route::put('/update/{role}', [RoleController::class, 'update'])->name('admin.role.update');
-        Route::delete('/delete/{role}', [RoleController::class, 'delete'])->name('admin.role.delete');
+        Route::put('/{role}', [RoleController::class, 'update'])->name('admin.role.update');
+        Route::delete('/{role}', [RoleController::class, 'delete'])->name('admin.role.delete');
     });
 
 
@@ -148,10 +148,10 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function()
     Route::prefix('province')->namespace('Province')->group(function() {
         Route::get('/', [ProvinceController::class, 'index'])->name('admin.province.index');
         Route::get('/create', [ProvinceController::class, 'create'])->name('admin.province.create');
-        Route::post('/store', [ProvinceController::class, 'store'])->name('admin.province.store');
+        Route::post('/', [ProvinceController::class, 'store'])->name('admin.province.store');
         Route::get('/edit/{province}', [ProvinceController::class, 'edit'])->name('admin.province.edit');
-        Route::put('/update/{province}', [ProvinceController::class, 'update'])->name('admin.province.update');
-        Route::delete('/delete/{province}', [ProvinceController::class, 'delete'])->name('admin.province.delete');
+        Route::put('/{province}', [ProvinceController::class, 'update'])->name('admin.province.update');
+        Route::delete('/{province}', [ProvinceController::class, 'delete'])->name('admin.province.delete');
 
         Route::get('/status/{province}', [ProvinceController::class, 'status'])->name('admin.province.status');
     });
@@ -160,11 +160,10 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function()
     Route::prefix('city')->namespace('City')->group(function() {
         Route::get('/', [CityController::class, 'index'])->name('admin.city.index');
         Route::get('/create', [CityController::class, 'create'])->name('admin.city.create');
-        Route::post('/store', [CityController::class, 'store'])->name('admin.city.store');
+        Route::post('/', [CityController::class, 'store'])->name('admin.city.store');
         Route::get('/edit/{city}', [CityController::class, 'edit'])->name('admin.city.edit');
-        Route::put('/update/{city}', [CityController::class, 'update'])->name('admin.city.update');
-        Route::delete('/delete/{city}', [CityController::class, 'delete'])->name('admin.city.delete');
-        Route::delete('/delete/{city}', [CityController::class, 'delete'])->name('admin.city.delete');
+        Route::put('/{city}', [CityController::class, 'update'])->name('admin.city.update');
+        Route::delete('/{city}', [CityController::class, 'delete'])->name('admin.city.delete');
 
         Route::get('/status/{city}', [CityController::class, 'status'])->name('admin.city.status');
     });

@@ -70,9 +70,6 @@ class ProductController extends Controller
     }
 
 
-
-
-
     public function edit(Product $product)
     {
         $categories = DB::table('categories')->select(['name', 'id'])->get();
@@ -81,9 +78,13 @@ class ProductController extends Controller
     }
 
 
-
-
-    public function update(ProductUpdateRequest $productRequest, SaveImage $saveImage, $id)
+    /**
+     * @param ProductUpdateRequest $productRequest
+     * @param SaveImage $saveImage
+     * @param int $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(ProductUpdateRequest $productRequest, SaveImage $saveImage, int $id)
     {
         // Find the product to update
         $product = Product::findOrFail($id);

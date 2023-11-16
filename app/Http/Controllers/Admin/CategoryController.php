@@ -13,7 +13,7 @@ class CategoryController extends Controller
 
     /* -- return view categories -- */
     public function index() {
-        $categories = Category::Paginate(10);
+        $categories = Category::Paginate();
         return view('admin.category.index', compact('categories'));
     }
 

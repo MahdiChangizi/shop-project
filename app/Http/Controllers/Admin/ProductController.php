@@ -10,6 +10,7 @@ use App\Models\Admin\Brand;
 use App\Models\Admin\Category;
 use App\Models\Admin\Product;
 use App\Services\SaveImage;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
@@ -74,8 +75,8 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $categories = Category::all();
-        $brands = Brand::all();
+        $categories = DB::table('categories')->select(['name', 'id'])->get();
+        $brands = DB::table('brands')->select(['name', 'id'])->get();
         return view('admin.product.edit', compact('product', 'categories', 'brands'));
     }
 
@@ -142,7 +143,7 @@ class ProductController extends Controller
             $delete = $product->attributes()->detach($attribute->id);
         }
 
-        File::delete(public_path($product->image));
+        File::delete($product->image);
         $product->delete();
 
         return back();

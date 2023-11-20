@@ -11,8 +11,6 @@ class Product extends Model
     use HasFactory, Sluggable;
 
     protected $fillable = ['name', 'description', 'status', 'image', 'slug', 'price', 'sold_number', 'frozen_number', 'category_id', 'brand_id'];
-
-
     public function sluggable(): array
     {
         return [
@@ -21,18 +19,14 @@ class Product extends Model
             ]
         ];
     }
-
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
-
-
     public function brand()
     {
         return $this->belongsTo(Brand::class);
     }
-
     public function attributes()
     {
         return $this->belongsToMany(Attribute::class);

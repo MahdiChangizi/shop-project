@@ -9,15 +9,21 @@ use App\Models\Admin\Attribute;
 use App\Models\Admin\Brand;
 use App\Models\Admin\Category;
 use App\Models\Admin\Product;
+use App\Repositories\Product\ProductRepositoryInterface;
 use App\Services\SaveImage;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
+    private ProductRepositoryInterface $productRepository;
+    public function __construct(ProductRepositoryInterface $productRepository)
+    {
+        $this->productRepository = $productRepository;
+    }
+
     public function index()
     {
-        $products = Product::Paginate(10);
+        $products = $this->productRepository->getDataForIndexProduct();
         return view('admin.product.index', compact('products'));
     }
 
@@ -72,8 +78,8 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $categories = DB::table('categories')->select(['name', 'id'])->get();
-        $brands = DB::table('brands')->select(['name', 'id'])->get();
+        $categories = Category::select(['name', 'id'])->get();
+        $brands = Brand::select(['name', 'id'])->get();
         return view('admin.product.edit', compact('product', 'categories', 'brands'));
     }
 

@@ -35,12 +35,12 @@
                         <tr>
                             <th>{{ $product->id }}</th>
                             <td>{{ $product->name }}</td>
-                            <td>{{ $product->brand->name }}</td>
+{{--                            <td>{{ $product->brand->name }}</td>--}}
                             <td>{{ $product->price }}</td>
 
 
                             <td>{{ $product->slug }}</td>
-                            <td>{{ $product->category->name }}</td>
+{{--                            <td>{{ $product->category->name }}</td>--}}
 
                             @if ($product->status == 1)
                                 <td>

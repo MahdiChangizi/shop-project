@@ -35,8 +35,8 @@ class LoginController extends Controller
                 toast('کد فعال سازی ارسال شد!' ,'success');
                 return to_route('auth.activationForm');
 
-            } 
-            else 
+            }
+            else
             {
                 toast('شما با موفقیت وارد حساب خود شدید!' ,'success');
                 return to_route('coustomer.profile');

@@ -10,24 +10,21 @@ use App\Models\Admin\Category;
 
 class CategoryController extends Controller
 {
-
     /* -- return view categories -- */
     public function index() {
-        $categories = Category::Paginate();
+        if (request('search')){
+            $categories = Category::select(['id', 'name', 'slug', 'parent_id', 'status', 'description'])->where('name', 'like', '%' . request('search')  . '%')->Paginate();
+        }   else {
+            $categories = Category::select(['id', 'name', 'slug', 'parent_id', 'status', 'description'])->Paginate();
+        }
         return view('admin.category.index', compact('categories'));
     }
 
-
-
-
     /* -- return view create -- */
     public function create() {
-        $categories = Category::all();
+        $categories = Category::select(['id', 'name'])->get();
         return view('admin.category.create', compact('categories'));
     }
-
-
-
 
     /* -- create a category -- */
     public function store(CategoryStoreRequest $request) {
@@ -36,31 +33,22 @@ class CategoryController extends Controller
         return to_route('admin.category.index')->with('alert-success', 'دسته بندی شما با موفقیت اضافه شد');
     }
 
-
-
-
-
     /* -- return view edit -- */
     public function edit(Category $category) {
-        $allCategories = Category::whereNot('id', $category->id);
+        $allCategories = Category::select(['id', 'name'])->whereNot('id', $category->id)->get();
         return view('admin.category.edit', compact('category', 'allCategories'));
     }
 
-
-
-
-
     /* -- update a category -- */
     public function update(Category $category, CategoryUpdateRequest $categoryRequest) {
-        $inputs = $categoryRequest->all();
-        $inputs['parent_id'] = $categoryRequest->parent_id;
-        $result = $category->update($inputs);
+        $category->update([
+            'name'        => $categoryRequest->name,
+            'description' => $categoryRequest->description,
+            'status'      => $categoryRequest->status,
+            'parent_id'   => $categoryRequest->parent_id,
+        ]);
         return to_route('admin.category.index')->with('alert-success', 'دسته بندی شما با موفقیت ویرایش شد');
     }
-
-
-
-
 
     /* -- delete -- */
     public function delete(Category $category) {
@@ -68,19 +56,10 @@ class CategoryController extends Controller
         return back();
     }
 
-
-
-
-    /* -- change status -- */
+     /* -- change status -- */
     public function status(Category $category) {
         $category->status = $category->status == 1 ? 0 : 1;
         $category->save();
         return to_route('admin.category.index')->with('alert-success', 'وضعیت دسته بندی شما با موفقیت تغییر کرد !');
     }
-
-
-
-
-
-
 }

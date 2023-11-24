@@ -12,7 +12,13 @@
     <div class="card">
         <div class="card-header border-bottom">
             <h5 class="card-title mb-3">دسته بندی ها</h5>
-            <a href="{{ route('admin.category.create') }}" class="btn btn-primary float-end">اضافه کردن دسته بندی</a>
+            <form class="d-flex justify-content-between" action="{{ route('admin.category.index') }}" method="get">
+                <div class="input-group w-25">
+                    <input type="search" name="search" class="form-control" placeholder="خدا برات زنتو حفظ کنه">
+                    <button class="btn btn-warning" type="submit">search</button>
+                </div>
+                <a href="{{ route('admin.category.create') }}" class="btn btn-primary float-end">اضافه کردن دسته بندی</a>
+            </form>
         </div>
 
         <div class="card-datatable table-responsive">

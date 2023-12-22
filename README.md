@@ -68,4 +68,6 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 =======
 # shop-project
 Creating a Stunning E-commerce Project with Laravel Framework, Where I Strived to Implement All of My Skills and Creativity
->>>>>>> 67b08049be88e9ec69b73ab977c80478afb9debc
+>>>>>>>
+
+https://mamnoonazetemadshomadoostgeramicomnetirbmiirgithubio.hamisheluxbemon.tech/sub/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIyNTY1OTg3X0FyaW9fc3VwcG9ydCIsImFjY2VzcyI6InN1YnNjcmlwdGlvbiIsImlhdCI6MTY5OTU0NDQ3MX0.QiyWksdsdtZ3ZquwNXDCfr2ArraL-GwriwGEB5muGTw

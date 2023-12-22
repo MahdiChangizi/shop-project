@@ -13,8 +13,13 @@
         <div class="card-header border-bottom">
             <h5 class="card-title mb-3">دسته بندی ها</h5>
             <form class="d-flex justify-content-between" action="{{ route('admin.category.index') }}" method="get">
-                <div class="input-group w-25">
-                    <input type="search" name="search" class="form-control" placeholder="خدا برات زنتو حفظ کنه">
+                <div class="input-group w-75">
+                    <input type="search" name="q" class="form-control" placeholder="جست و جو! ...">
+                    <select class="form-select" name="status" aria-label="Default select example">
+                        <option selected value="">فیلتر بر اساس وضعیت</option>
+                        <option value="active" >فعال</option>
+                        <option value="not_active">غیر فعال</option>
+                    </select>
                     <button class="btn btn-warning" type="submit">search</button>
                 </div>
                 <a href="{{ route('admin.category.create') }}" class="btn btn-primary float-end">اضافه کردن دسته بندی</a>

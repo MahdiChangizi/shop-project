@@ -18,63 +18,64 @@
         <div class="card-datatable table-responsive">
             <table class="datatables-users table border-top">
                 <thead>
-                    <tr>
-                        <th>آیدی</th>
-                        <th>نام</th>
-                        <th>برند</th>
-                        <th>قیمت</th>
-                        <th>اسلاگ</th>
-                        <th>دسته بندی</th>
-                        <th>وضعیت</th>
-                        <th>آپشن ها</th>
-                    </tr>
+                <tr>
+                    <th>آیدی</th>
+                    <th>نام</th>
+                    <th>برند</th>
+                    <th>قیمت</th>
+                    <th>اسلاگ</th>
+                    <th>دسته بندی</th>
+                    <th>وضعیت</th>
+                    <th>آپشن ها</th>
+                </tr>
                 </thead>
 
                 <tbody>
-                    @foreach ($products as $product)
-                        <tr>
-                            <th>{{ $product->id }}</th>
-                            <td>{{ $product->name }}</td>
-{{--                            <td>{{ $product->brand->name }}</td>--}}
-                            <td>{{ $product->price }}</td>
+                @foreach ($products as $product)
+                    <tr>
+                        <th>{{ $product->id }}</th>
+                        <td>{{ $product->name }}</td>
+                        <td>{{ $product->brand }}</td>
+                        <td>{{ $product->price }}</td>
 
+                        <td>{{ $product->slug }}</td>
+                        <td>{{ $product->category}}</td>
 
-                            <td>{{ $product->slug }}</td>
-{{--                            <td>{{ $product->category->name }}</td>--}}
-
-                            @if ($product->status == 1)
-                                <td>
-                                    <a href="{{ route('admin.product.status', $product->id) }}"
-                                        class="btn rounded-pill btn-sm btn-success waves-effect waves-light">فعال</a>
-                                </td>
-                            @else
-                                <td>
-                                    <a href="{{ route('admin.product.status', $product->id) }}"
-                                        class="btn rounded-pill btn-sm btn-danger waves-effect waves-light">غیر فعال</a>
-                                </td>
-                            @endif
-
+                        @if ($product->status == 1)
                             <td>
-                                <a href="{{ route('admin.product.attributes', $product->id) }}"
-                                    class="btn btn-sm rounded-pill btn-warning waves-effect waves-light">ویژگی ها</a>
-
-
-                                <a href="{{ route('admin.product.edit', $product->id) }}"
-                                    class="btn btn-sm rounded-pill btn-info waves-effect waves-light">ویرایش</a>
-
-
-                                <form id="deleteButton" class="d-inline" action="{{ route('admin.product.delete', $product->id) }}"
-                                    method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="button"
-                                        class="btn rounded-pill btn-sm btn-danger waves-effect waves-light deleteButton"
-                                        id="deleteButton">حذف</button>
-                                </form>
-
+                                <a href="{{ route('admin.product.status', $product->id) }}"
+                                   class="btn rounded-pill btn-sm btn-success waves-effect waves-light">فعال</a>
                             </td>
-                        </tr>
-                    @endforeach
+                        @else
+                            <td>
+                                <a href="{{ route('admin.product.status', $product->id) }}"
+                                   class="btn rounded-pill btn-sm btn-danger waves-effect waves-light">غیر فعال</a>
+                            </td>
+                        @endif
+
+                        <td>
+                            <a href="{{ route('admin.product.attributes', $product->id) }}"
+                               class="btn btn-sm rounded-pill btn-warning waves-effect waves-light">ویژگی ها</a>
+
+
+                            <a href="{{ route('admin.product.edit', $product->id) }}"
+                               class="btn btn-sm rounded-pill btn-info waves-effect waves-light">ویرایش</a>
+
+
+                            <form id="deleteButton" class="d-inline"
+                                  action="{{ route('admin.product.delete', $product->id) }}"
+                                  method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="button"
+                                        class="btn rounded-pill btn-sm btn-danger waves-effect waves-light deleteButton"
+                                        id="deleteButton">حذف
+                                </button>
+                            </form>
+
+                        </td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
 

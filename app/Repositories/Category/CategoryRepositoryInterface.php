@@ -2,7 +2,10 @@
 
 namespace App\Repositories\Category;
 
-interface CategoryRepositoryInterface
+use App\Repositories\EloquentRepositoryInterface;
+
+interface CategoryRepositoryInterface extends EloquentRepositoryInterface
 {
-    public function searchData();
+    public function getAllCategoriesByFilters();
+
 }

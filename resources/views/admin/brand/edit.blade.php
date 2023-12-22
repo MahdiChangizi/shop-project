@@ -14,7 +14,7 @@
         <div class="mb-3 row">
           <label class="col-md-2 col-form-label">نام برند</label>
           <div class="col-md-10">
-            <input class="form-control mb-2" name="name" type="text" placeholder="نام را وارد کنید ..." value="{{ old('name', $brand->name) }}">
+            <input class="form-control mb-2" name="name" type="text" placeholder="نام را وارد کنید ..." value="{{ old('name', $brand->persian_name) }}">
 
             @error('name')
                 <span class="text-danger mt-3">{{ $message }}</span>

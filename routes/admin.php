@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\CityController;
@@ -18,11 +19,13 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
+//Route::prefix('admin')->middleware('auth')->group(function() {
+Route::prefix('admin')->group(function() {
+    auth()->loginUsingId(1);
 
-Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function() {
-
+    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     // categories
-    Route::prefix('category')->namespace('Category')->group(function() {
+    Route::prefix('category')->group(function() {
         Route::get('/', [CategoryController::class, 'index'])->name('admin.category.index');
         Route::get('/create', [CategoryController::class, 'create'])->name('admin.category.create');
         Route::post('/', [CategoryController::class, 'store'])->name('admin.category.store');
@@ -34,7 +37,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function()
         Route::get('/status/{category}', [CategoryController::class, 'status'])->name('admin.category.status');
     });
 
-    
+
 
     // brand
     Route::prefix('brand')->namespace('Brand')->group(function() {
@@ -174,7 +177,7 @@ Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function()
     // roles
     Route::prefix('profile')->namespace('Role')->group(function() {
         Route::get('/', [ProfileController::class, 'index'])->name('admin.profile.index');
-        
+
         Route::get('/setting', [ProfileController::class, 'setting'])->name('admin.profile.setting');
         Route::put('setting/update/{user}', [ProfileController::class, 'update'])->name('admin.profile.settingUpdate');
     });

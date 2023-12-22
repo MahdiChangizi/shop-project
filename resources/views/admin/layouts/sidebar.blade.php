@@ -1,6 +1,6 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-        <a href="index.html" class="app-brand-link">
+        <a href="{{route('admin.index')}}" class="app-brand-link">
             <span class="app-brand-logo demo">
                 <img src="{{ asset('assets/img/fava.jpg') }}" alt="logo.png">
             </span>
@@ -33,15 +33,7 @@
             <ul class="menu-sub">
                 <li class="menu-item">
                     <a href="{{ route('admin.category.index') }}" class="menu-link">
-                        <div data-i18n="List">لیست دسته بندی ها</div>
-                    </a>
-                </li>
-            </ul>
-
-            <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="{{ route('admin.category.create') }}" class="menu-link">
-                        <div data-i18n="List">اضافه کردن دسته بندی</div>
+                        <div data-i18n="List">همه دسته بندی ها</div>
                     </a>
                 </li>
             </ul>
@@ -249,7 +241,7 @@
         {{-- End cities --}}
 
 
-        
+
     </ul>
 
 

@@ -1,7 +1,7 @@
 <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
     id="layout-navbar">
 
-    
+
     <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
         <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
             <i class="ti ti-menu-2 ti-sm"></i>
@@ -25,18 +25,18 @@
                   <i class="ti ti-bell ti-md"></i>
                   <span class="badge bg-danger rounded-pill badge-notifications">5</span>
                 </a>
-        
+
                 <ul class="dropdown-menu dropdown-menu-end py-0">
-        
+
                   <li class="dropdown-menu-header border-bottom">
                     <div class="dropdown-header d-flex align-items-center py-3">
                       <h5 class="text-body mb-0 me-auto">Notification</h5>
                       <a href="javascript:void(0)" class="dropdown-notifications-all text-body" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Mark all as read" data-bs-original-title="Mark all as read"><i class="ti ti-mail-opened fs-4"></i></a>
                     </div>
                   </li>
-        
+
                     <ul class="list-group list-group-flush">
-                      
+
                       <li class="list-group-item list-group-item-action dropdown-notifications-item marked-as-read">
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
@@ -56,7 +56,7 @@
                         </div>
                       </li>
                     </ul>
-        
+
                   <div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></li>
                   <li class="dropdown-menu-footer border-top">
                     <a href="javascript:void(0);" class="dropdown-item d-flex justify-content-center text-primary p-2 h-px-40 mb-1 align-items-center">
@@ -64,7 +64,7 @@
                     </a>
                   </li>
                 </ul>
-        
+
             </li>
 
             <!-- User -->
@@ -115,7 +115,7 @@
                             <span class="align-middle">تنظیمات</span>
                         </a>
                     </li>
-                    
+
                     <li>
                         <div class="dropdown-divider"></div>
                     </li>
@@ -133,8 +133,8 @@
                 </ul>
             </li>
             <!--/ User -->
-                
+
         </ul>
     </div>
-    
+
 </nav>

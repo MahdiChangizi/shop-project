@@ -33,11 +33,11 @@
                     @foreach ($brands as $brand)
                         <tr>
                             <th>{{ $brand->id }}</th>
-                            <td>{{ $brand->name }}</td>
+                            <td>{{ $brand->persian_name }}</td>
                             <td>{{ Str::limit($brand->description, 10, ' ...') }}</td>
 
                             <td>
-                                <img width="100" height="50" src="{{ asset($brand->logo) }}">
+                                <img width="100" height="50" src="{{ asset('/adm/products/images/'. $brand->logo) }}">
                             </td>
 
 

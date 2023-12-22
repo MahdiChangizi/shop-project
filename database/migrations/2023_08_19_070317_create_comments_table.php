@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->text('comment');
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('product_id')->constrained('products')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('parent_id')->nullable()->constrained('comments')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->string('status')->default(0);
+            $table->text('body');
+            $table->tinyInteger('seen')->default(0)->comment('0 => unseen, 1 => seen');
+            $table->tinyInteger('approved')->default(0)->comment('0 => not approved, 1 => approved');
+            $table->tinyInteger('status')->default(0);
+            $table->foreignId('parent_id')->nullable()->constrained('comments');
+            $table->foreignId('user_id')->constrained('users');
+            $table->morphs('commentable');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -10,15 +10,17 @@ use App\Models\Admin\Brand;
 use App\Models\Admin\Category;
 use App\Models\Admin\Product;
 use App\Repositories\Product\ProductRepositoryInterface;
+use App\Services\ProductService;
 use App\Services\SaveImage;
 use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
-    private ProductRepositoryInterface $productRepository;
-    public function __construct(ProductRepositoryInterface $productRepository)
+    public function __construct(ProductRepositoryInterface $productRepository,
+                                ProductService             $productService)
     {
         $this->productRepository = $productRepository;
+        $this->productService = $productService;
     }
 
     public function index()
@@ -28,33 +30,29 @@ class ProductController extends Controller
     }
 
 
-
-
     public function create()
     {
-        $categories = Category::all();
-        $brands = Brand::all();
+        $categories = $this->productRepository->getCategories();
+        $brands = $this->productRepository->getBrands();
         return view('admin.product.create', compact('categories', 'brands'));
     }
-
-
 
 
     public function store(ProductStoreRequest $productRequest, SaveImage $saveImage)
     {
         // create Product
-        $inputs = $productRequest->all();
-        $image  = $productRequest->file('image');
-        $saveImage->save($image, 'Products');
-        $inputs['image'] = $saveImage->saveImageDb();
+//        $inputs = $productRequest->all();
+//        $image = $productRequest->file('image');
+//        $saveImage->save($image, 'Products');
+//        $inputs['image'] = $saveImage->saveImageDb();
 
-        $product = Product::create($inputs);
+        $this->productService->create($productRequest, $saveImage);
+        $product = $this->productRepository->create($inputs);
 
-
-        if(!is_null($inputs['attributes'])){
+        if (isset($inputs['attributes'])) {
             $attributes = collect($inputs['attributes']);
-            $attributes->each(function($item) use ($product) {
-                if(is_null($item['name']) || is_null($item['value'])) return;
+            $attributes->each(function ($item) use ($product) {
+                if (is_null($item['name']) || is_null($item['value'])) return;
 
                 $attr = Attribute::create([
                     'name' => $item['name']
@@ -78,8 +76,8 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        $categories = Category::select(['name', 'id'])->get();
-        $brands = Brand::select(['name', 'id'])->get();
+        $categories = $this->productRepository->getCategories();
+        $brands = $this->productRepository->getBrands();
         return view('admin.product.edit', compact('product', 'categories', 'brands'));
     }
 
@@ -138,10 +136,6 @@ class ProductController extends Controller
     }
 
 
-
-
-
-
     public function delete(Product $product)
     {
         $attributes = $product->attributes;
@@ -157,12 +151,9 @@ class ProductController extends Controller
     }
 
 
-
-
-
     public function status(Product $product)
     {
-        $product->status =  $product->status == 1 ? 0 : 1;
+        $product->status = $product->status == 1 ? 0 : 1;
         $product->save();
         return back()->with('وضعیت محصول شما با موفقیت تغییر کرد!');
     }

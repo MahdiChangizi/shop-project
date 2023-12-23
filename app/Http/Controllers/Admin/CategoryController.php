@@ -8,57 +8,48 @@ use App\Http\Requests\Admin\Category\CategoryUpdateRequest;
 use App\Models\Admin\Category;
 use App\Repositories\Category\CategoryRepository;
 use App\Repositories\Category\CategoryRepositoryInterface;
-use App\Services\CategoryService;
-
 
 class CategoryController extends Controller
 {
-    public function __construct(CategoryRepositoryInterface $categoryRepository,
-                                CategoryService             $categoryService)
+    private CategoryRepository $categoryRepository;
+
+    public function __construct(CategoryRepositoryInterface $categoryRepository)
     {
         $this->categoryRepository = $categoryRepository;
-        $this->categoryService = $categoryService;
     }
-
-    public function index()
+    public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $categories = $this->categoryRepository->getAllCategoriesByFilters();
-        return view('admin.category.index', compact('categories'));
+        return view(view: 'admin.category.index', data: compact(var_name: 'categories'));
     }
-
-    public function create()
+    public function create(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
         $categories = $this->categoryRepository->all();
-        return view('admin.category.create', compact('categories'));
+        return view(view: 'admin.category.create', data: compact(var_name: 'categories'));
     }
-
-    public function store(CategoryStoreRequest $request)
+    public function store(CategoryStoreRequest $request): \Illuminate\Http\RedirectResponse
     {
-        $this->categoryRepository->create($request->toArray());
-        return to_route('admin.category.index')->with('alert-success', 'دسته بندی شما با موفقیت اضافه شد');
+        $this->categoryRepository->create(attributes: $request->toArray());
+        return to_route(route: 'admin.category.index')->with(key: 'alert-success', value: 'دسته بندی شما با موفقیت اضافه شد');
     }
-
-    public function edit(Category $category)
+    public function edit(Category $category): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $allCategories = $this->categoryService->all();
-        return view('admin.category.edit', compact('category', 'allCategories'));
+        $allCategories = $this->categoryRepository->gettingDataOtherThanItself(category: $category);
+        return view(view: 'admin.category.edit', data: compact('category','allCategories'));
     }
-
-    public function update(CategoryUpdateRequest $request, $id)
+    public function update(CategoryUpdateRequest $request, int $id): \Illuminate\Http\RedirectResponse
     {
-        $this->categoryService->update($request->toArray(), $id);
-        return to_route('admin.category.index')->with('alert-success', 'دسته بندی شما با موفقیت ویرایش شد');
+        $this->categoryRepository->update(attributes: $request->toArray(), id: $id);
+        return to_route(route: 'admin.category.index')->with(key: 'alert-success', value: 'دسته بندی شما با موفقیت ویرایش شد');
     }
-
-    public function delete($id)
+    public function delete(int $id): \Illuminate\Http\RedirectResponse
     {
-        $this->categoryService->delete($id);
-        return back()->with('alert-success', 'دسته بندی شما با موفقیت حذف شد');
+        $this->categoryRepository->delete(id: $id);
+        return back()->with(key: 'alert-success', value: 'دسته بندی شما با موفقیت حذف شد');
     }
-
-    public function status(Category $category)
+    public function status(Category $category): \Illuminate\Http\RedirectResponse
     {
-        $this->categoryService->status($category);
-        return to_route('admin.category.index')->with('alert-success', 'وضعیت دسته بندی شما با موفقیت تغییر کرد !');
+        $this->categoryRepository->status(category: $category);
+        return to_route(route: 'admin.category.index')->with(key: 'alert-success', value: 'وضعیت دسته بندی شما با موفقیت تغییر کرد !');
     }
 }

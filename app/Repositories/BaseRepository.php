@@ -34,7 +34,7 @@ class BaseRepository implements EloquentRepositoryInterface
     }
     public function update(array $attributes, int $id): bool
     {
-        return $this->find($id)->update($attributes);
+        return $this->find(id: $id)->update(attributes: $attributes);
     }
 
     public function allWithPaginate(int $paginate = 15, $type = 'DESC')

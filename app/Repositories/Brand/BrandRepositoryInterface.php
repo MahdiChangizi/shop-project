@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Repositories\Brand;
+use Illuminate\Http\Request;
 
 interface BrandRepositoryInterface
 {
     public function index();
 
-    public function store($request, $image_name);
+    public function store(Request $request, $image_name);
 
     public function update($brand, $request);
 

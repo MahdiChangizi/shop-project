@@ -4,6 +4,7 @@ namespace App\Repositories\Brand;
 
 use App\Models\Admin\Brand;
 use Illuminate\Support\Facades\File;
+use Illuminate\Http\Request;
 
 class BrandRepository implements BrandRepositoryInterface
 {

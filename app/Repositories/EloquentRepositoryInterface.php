@@ -11,11 +11,11 @@ interface EloquentRepositoryInterface
 
     public function create(array $attributes): Model;
 
-    public function find($id): ?Model;
+    public function find(int $id): ?Model;
 
-    public function update(array $attributes, $id): bool;
+    public function update(array $attributes, int $id): bool;
 
-    public function delete($id);
+    public function delete(int $id);
 
-    public function allWithPaginate($paginate = 15, $type = 'DESC');
+    public function allWithPaginate(int $paginate = 15, $type = 'DESC');
 }

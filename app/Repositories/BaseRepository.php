@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Request;
 
 class BaseRepository implements EloquentRepositoryInterface
 {
-    protected $model;
+    protected Model $model;
 
     public function __construct(Model $model)
     {
@@ -28,31 +28,29 @@ class BaseRepository implements EloquentRepositoryInterface
         return $this->model->create($attributes);
     }
 
-    public function find($id): ?Model
+    public function find(int $id): ?Model
     {
-        return $this->model->find($id);
+        return $this->model->find(id: $id);
     }
-    public function update(array $attributes, $id): bool
+    public function update(array $attributes, int $id): bool
     {
         return $this->find($id)->update($attributes);
     }
 
-    public function allWithPaginate($paginate = 15, $type = 'DESC')
+    public function allWithPaginate(int $paginate = 15, $type = 'DESC')
     {
         return $this->model->orderBy('id', $type)->paginate($paginate);
     }
 
     public function where($key, $value, $orWhere = null)
     {
-        if ($orWhere) {
-            return $this->model->where($key, $value)->orWhere($orWhere, $value)->get();
-        }
+        if ($orWhere) return $this->model->where($key, $value)->orWhere($orWhere, $value)->get();
         return $this->model->where($key, $value)->get();
     }
 
-    public function delete($id)
+    public function delete(int $id)
     {
-        return $this->find($id)->delete();
+        return $this->find(id: $id)->delete();
     }
 
     public function getAccess()

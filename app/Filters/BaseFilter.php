@@ -2,7 +2,7 @@
 
 namespace App\Filters;
 
-class BaseFilter implements BaseFilterInterface
+class BaseFilter
 {
     protected mixed $queryParams;
     protected mixed $result;

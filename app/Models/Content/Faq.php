@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Models\Admin;
+namespace App\Models\Content;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Banner extends Model
+class Faq extends Model
 {
     use HasFactory;
-    protected $fillable = ['url', 'image', 'position', 'status'];
-
 }

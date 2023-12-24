@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Market;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Notification extends Model
+class Delivery extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
-    
-    
 }

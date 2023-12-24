@@ -10,7 +10,7 @@ class CategoryFilter extends BaseFilter {
     private mixed $searchKey;
     private ?string $status;
 
-    public function __construct(mixed $queryParams, int $per_page)
+    public function __construct(mixed $queryParams, int|null $per_page)
     {
         $this->queryParams = $queryParams;
         $this->per_page = $per_page;

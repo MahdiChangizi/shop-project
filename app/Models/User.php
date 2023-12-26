@@ -15,7 +15,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, Sluggable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -23,9 +23,18 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'userName',
+        'first_name',
+        'last_name',
+        'email',
         'mobile',
+        'status',
+        'user_type',
+        'activation',
+        'profile_photo_path',
         'password',
+        'email_verified_at',
+        'mobile_verified_at',
+        'national_code',
     ];
 
     /**
@@ -48,59 +57,5 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'userName'
-            ]
-        ];
-    }
 
-
-
-    public function permissions()
-    {
-        return $this->belongsToMany(Permission::class);
-    }
-
-
-
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class);
-    }
-
-
-
-
-    public function hasRole($roles)
-    {
-        return !! $roles->intersect($this->roles)->all();
-    }
-
-
-
-    public function hasPermission($permission)
-    {
-        return $this->permissions->where('name', $permission->name)->first() || $this->hasRole($permission->roles);
-    }
-
-
-
-    public function profile()
-    {
-        return $this->hasOne(Profile::class);
-    }
-
-    public function codes()
-    {
-        return $this->hasMany(ActiveCode::class);
-    }
-
-
-    public function getFullNameAttribute()
-    {
-        return $this->profile->first_name . ' ' . $this->profile->last_name ;
-    }
 }
